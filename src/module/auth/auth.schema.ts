@@ -10,3 +10,11 @@ export const registerValidation = z.object({
     .string()
     .min(8, { message: "Password must be at least 8 charecters" }),
 });
+
+export const verifyOtpValidation = z.object({
+  email: z.string().trim().email(),
+  otp: z
+    .string()
+    .min(6, { message: "OTP must be exact 6 charecters" })
+    .max(6, { message: "OTP must be exact 6 charecters" }),
+});
