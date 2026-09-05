@@ -1,11 +1,12 @@
 import { createClient } from "redis";
+import { credentials } from "../config/credentials.js";
 
 const redisClient = createClient({
-  username: "default",
-  password: "ppV6VvjwCP8AqM5P8Na4hQhhxicThtzw",
+  username: credentials.redis_user,
+  password: credentials.redis_password,
   socket: {
-    host: "toad-innovative-forte-75572.db.redis.io",
-    port: 15175,
+    host: credentials.redis_host,
+    port: Number(credentials.redis_port),
   },
 });
 export default redisClient;
