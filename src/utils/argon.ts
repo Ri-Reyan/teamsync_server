@@ -6,10 +6,13 @@ const options = {
   timeCost: 3,
 };
 
-export const convertToHash = (password: string) => {
-  return argon2.hash(password, options);
+export const convertToHash = async (password: string) => {
+  return await argon2.hash(password, options);
 };
 
-export const verifyHash = (hashPassword: string, plainPassword: string) => {
-  return argon2.verify(hashPassword, plainPassword);
+export const verifyHash = async (
+  hashPassword: string,
+  plainPassword: string,
+) => {
+  return await argon2.verify(hashPassword, plainPassword);
 };

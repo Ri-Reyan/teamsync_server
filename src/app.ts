@@ -4,6 +4,7 @@ import { credentials } from "./config/credentials.js";
 import helmet from "helmet";
 import { Request, Response } from "express";
 import { globalErrorHandler } from "./global/errorHandler.js";
+import authRouter from "./module/auth/auth.route.js";
 
 const app = express();
 
@@ -24,6 +25,8 @@ app.get("/", (req: Request, res: Response) => {
     message: "Server is running",
   });
 });
+
+app.use("/api/v1/auth", authRouter);
 
 app.use(globalErrorHandler);
 

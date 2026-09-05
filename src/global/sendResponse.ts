@@ -8,7 +8,7 @@ type PayloadType<T> = {
   data?: T;
 };
 
-const sendResponse = <T,>(res: Response, payload: PayloadType<T>) => {
+const sendResponse = <T>(res: Response, payload: PayloadType<T>) => {
   return res.status(payload.statusCode).json({
     success: payload.success,
     message: payload.message,
