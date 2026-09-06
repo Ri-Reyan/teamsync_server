@@ -2,17 +2,16 @@ import http from "http";
 import app from "./app.js";
 import { prisma } from "./lib/prisma.js";
 import { credentials } from "./config/credentials.js";
-import redisClient from "./lib/redis.js";
+import redisClient, { connectRedis } from "./lib/redis.js";
 
 const main = async () => {
   const server = http.createServer(app);
 
   try {
     await prisma.$connect();
-    console.log("Databse connected successfully");
+    console.log("⚡ [Supabase]: Connected successfully");
 
-    await redisClient.connect();
-    console.log("Redis connected successfully");
+    await connectRedis();
 
     server.listen(credentials.port || 4000, () => {
       console.log(
@@ -21,7 +20,9 @@ const main = async () => {
     });
   } catch (error) {
     await prisma.$disconnect();
+    await redisClient.disconnect();
     console.log("Database connection failed");
+    console.log("Redis connection failed");
     process.exit(1);
   }
 };

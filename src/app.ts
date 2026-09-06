@@ -5,6 +5,8 @@ import helmet from "helmet";
 import { Request, Response } from "express";
 import { globalErrorHandler } from "./global/errorHandler.js";
 import authRouter from "./module/auth/auth.route.js";
+import "./lib/passport.js";
+import passport from "passport";
 
 const app = express();
 
@@ -18,6 +20,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
+app.use(passport.initialize());
 
 app.get("/", (req: Request, res: Response) => {
   res.send({

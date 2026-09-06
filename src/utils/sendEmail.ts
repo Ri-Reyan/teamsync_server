@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import { credentials } from "../config/credentials.js";
+import AppError from "../global/AppError.js";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -27,9 +28,7 @@ export const sendEmail = (payload: SendEmailPayloadType) =>
     },
     (error, info) => {
       if (error) {
-        console.log(error);
-      } else {
-        console.log("Email sent: " + info.response);
+        throw new AppError(error.message, 400);
       }
     },
   );

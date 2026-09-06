@@ -4,11 +4,13 @@ import { prisma } from "../../lib/prisma.js";
 import redisClient from "../../lib/redis.js";
 import { convertToHash } from "../../utils/argon.js";
 import { genOtp } from "../../utils/otp.js";
-import { RegisterPayloadType, VerifyOtpPayloadType } from "./auth.interface.js";
+import {
+  LoginPayloadType,
+  RegisterPayloadType,
+  VerifyOtpPayloadType,
+} from "./auth.interface.js";
 import { sendEmail } from "../../utils/sendEmail.js";
 import ejs from "ejs";
-import { da } from "zod/v4/locales";
-import { date } from "zod";
 
 const registeUserService = async (paylaod: RegisterPayloadType) => {
   const { username, email, password } = paylaod;
@@ -100,7 +102,8 @@ const verifyRegistrationOtpService = async (payload: VerifyOtpPayloadType) => {
     data: {
       username: parsedUser.username,
       email: parsedUser.email,
-      password: parsedUser.hashedPassword,
+      password: parsedUser.password,
+      signUpMethod: "CREDENTIALS",
     },
     omit: {
       password: true,
@@ -116,7 +119,42 @@ const verifyRegistrationOtpService = async (payload: VerifyOtpPayloadType) => {
   return user;
 };
 
+const loginService = async (payload: LoginPayloadType) => {
+  const { email, password } = payload;
+
+  const isExistingUser = await prisma.user.findUniqueOrThrow({
+    where: {
+      email,
+    },
+  });
+
+  if (isExistingUser.signUpMethod === "GOOGLE") {
+    const user = isExistingUser;
+
+    const otpCode = genOtp();
+
+    const templatePath = path.join(process.cwd(), "src/views/verify-email.ejs");
+
+    const html = await ejs.renderFile(templatePath, {
+      username: user.username,
+      otpCode: otpCode,
+      expiresIn: 15,
+    });
+
+    const sendEmailPayload = {
+      to: email,
+      subject: "Welcome to Team Sync",
+      html,
+    };
+
+    sendEmail(sendEmailPayload);
+
+    return isExistingUser;
+  }
+};
+
 export const authService = {
   registeUserService,
   verifyRegistrationOtpService,
+  loginService,
 };
