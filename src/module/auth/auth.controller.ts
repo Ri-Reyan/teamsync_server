@@ -1,5 +1,11 @@
 import { Request, Response } from "express";
-import { registerValidation, verifyOtpValidation } from "./auth.schema.js";
+import {
+  forgotPasswordSchema,
+  loginSchema,
+  registerValidation,
+  resetPasswordSchema,
+  verifyOtpValidation,
+} from "./auth.schema.js";
 import AppError from "../../global/AppError.js";
 import { authService } from "./auth.service.js";
 import sendResponse from "../../global/sendResponse.js";
@@ -121,9 +127,16 @@ export const googleCallback = catchAsync(
   },
 );
 
-// ==================== MANUAL LOGIN ====================
 export const login = catchAsync(async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const result = loginSchema.safeParse(req.body);
+
+  if (!result.success) {
+    throw new AppError(result.error.issues[0].message, 400);
+  }
+
+  const email = result.data?.email;
+
+  const password = result.data?.password as string;
 
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user || !user.password) {
@@ -135,7 +148,6 @@ export const login = catchAsync(async (req: Request, res: Response) => {
     throw new AppError("Invalid email or password", 401);
   }
 
-  // Consistent Payload Structure
   const jwtPayload = {
     id: user.id,
     email: user.email,
@@ -171,14 +183,18 @@ export const login = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-// ==================== FORGOT PASSWORD ====================
 export const forgotPassword = catchAsync(
   async (req: Request, res: Response) => {
-    const { email } = req.body;
+    const result = forgotPasswordSchema.safeParse(req.body);
+
+    const email = result.data?.email;
+
+    if (!result.success) {
+      throw new AppError(result.error.issues[0].message, 400);
+    }
 
     const user = await prisma.user.findUnique({ where: { email } });
 
-    // ১. ইমেইল না থাকলেও সাকসেস মেসেজ ব্যাক করা (Security Best Practice)
     if (!user) {
       return sendResponse(res, {
         success: true,
@@ -188,15 +204,13 @@ export const forgotPassword = catchAsync(
       });
     }
 
-    // ২. র্যান্ডম টোকেন ও তার হ্যাশ তৈরি
-    const resetToken = String(genOtp()); // অথবা crypto.randomBytes(32).toString("hex")
+    const resetToken = String(genOtp());
     const hashedToken = await convertToHash(resetToken);
 
-    // ৩. Redis-এ userId সহ সেভ করা (১৫ মিনিট এক্সপায়ারি)
     await redisClient.set(
       `forget_password:${resetToken}`,
       JSON.stringify({
-        userId: user.id, // 👈 FIX: userId সেভ করা হলো
+        userId: user.id,
         token: hashedToken,
       }),
       {
@@ -207,7 +221,6 @@ export const forgotPassword = catchAsync(
       },
     );
 
-    // ৪. ইমেইল পাঠানো
     const resetUrl = `${credentials.client_url}/reset-password?token=${resetToken}`;
 
     const templatePath = path.join(
@@ -235,11 +248,16 @@ export const forgotPassword = catchAsync(
   },
 );
 
-// ==================== RESET PASSWORD ====================
 export const resetPassword = catchAsync(async (req: Request, res: Response) => {
-  const { token, newPassword } = req.body;
+  const result = resetPasswordSchema.safeParse(req.body);
 
-  // ১. Redis থেকে ডাটা আনা
+  if (!result.success) {
+    throw new AppError(result.error.issues[0].message, 400);
+  }
+
+  const token = result.data.token;
+  const newPassword = result.data.newPassword;
+
   const findToken = await redisClient.get(`forget_password:${token}`);
   if (!findToken) {
     throw new AppError("Invalid or expired password reset token", 400);
@@ -247,13 +265,11 @@ export const resetPassword = catchAsync(async (req: Request, res: Response) => {
 
   const parsedToken = JSON.parse(findToken);
 
-  // ২. হ্যাশ ভেরিফিকেশন (plainToken, hashedToken)
   const isMatched = await verifyHash(parsedToken.token, token);
   if (!isMatched) {
     throw new AppError("Invalid or expired password reset token", 400);
   }
 
-  // ৩. নতুন পাসওয়ার্ড হ্যাশ করে আপডেট করা
   const hashedPassword = await convertToHash(newPassword);
 
   await prisma.user.update({
@@ -263,7 +279,6 @@ export const resetPassword = catchAsync(async (req: Request, res: Response) => {
     },
   });
 
-  // ৪. Redis থেকে টোকেনটি ডিলিট করা
   await redisClient.del(`forget_password:${token}`);
 
   sendResponse(res, {

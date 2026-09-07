@@ -7,6 +7,7 @@ import { globalErrorHandler } from "./global/errorHandler.js";
 import authRouter from "./module/auth/auth.route.js";
 import "./lib/passport.js";
 import passport from "passport";
+import userRouter from "./module/user/user.route.js";
 
 const app = express();
 
@@ -30,6 +31,8 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/v1/auth", authRouter);
+
+app.use("/api/v1/user", userRouter);
 
 app.use(globalErrorHandler);
 
