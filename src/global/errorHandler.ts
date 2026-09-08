@@ -7,37 +7,46 @@ export const globalErrorHandler = (
   res: Response,
   next: NextFunction,
 ) => {
-  err.statusCode = err.statusCode || 500;
-  err.status = err.status || "error";
+  let error = err;
 
+  // 1. Prisma Unique Constraint Error (e.g. Email/Name already exists)
   if (err.code === "P2002") {
     const field = err.meta?.target?.[0] || "field";
-    err = new AppError(`A record with this ${field} already exists.`, 400);
+    error = new AppError(`A record with this ${field} already exists.`, 400);
   }
 
+  // 2. Prisma Record Not Found Error
   if (err.code === "P2025") {
-    err = new AppError("The requested record was not found.", 404);
+    error = new AppError("The requested record was not found.", 404);
   }
 
+  // Set default values if not defined
+  const statusCode = error.statusCode || 500;
+  const message =
+    error.message || "Something went wrong! Please try again later.";
+
+  // Development Response
   if (process.env.NODE_ENV === "development") {
-    return res.status(err.statusCode).json({
+    return res.status(statusCode).json({
       success: false,
-      statusCode: err.statusCode,
-      message: err.message,
-      error: err,
-      stack: err.stack,
+      statusCode,
+      message,
+      error,
+      stack: error.stack,
     });
   }
 
-  if (err.isOperational) {
-    return res.status(err.statusCode).json({
+  // Production Response: Trusted / Operational Error
+  if (error.isOperational) {
+    return res.status(statusCode).json({
       success: false,
-      statusCode: err.statusCode,
-      message: err.message,
+      statusCode,
+      message,
     });
   }
 
-  console.error("UNHANDLED ERROR:", err);
+  // Production Response: Programming or Unknown Error (Don't leak details)
+  console.error("UNHANDLED ERROR 💥:", error);
   return res.status(500).json({
     success: false,
     statusCode: 500,

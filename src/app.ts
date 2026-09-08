@@ -7,7 +7,8 @@ import { globalErrorHandler } from "./global/errorHandler.js";
 import authRouter from "./module/auth/auth.route.js";
 import "./lib/passport.js";
 import passport from "passport";
-import userRouter from "./module/user/user.route.js";
+import worksapceRouter from "./module/user/workspace/worksapce.route.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(
   }),
 );
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
@@ -32,7 +34,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/api/v1/auth", authRouter);
 
-app.use("/api/v1/user", userRouter);
+app.use("/api/v1/user/workspace", worksapceRouter);
 
 app.use(globalErrorHandler);
 

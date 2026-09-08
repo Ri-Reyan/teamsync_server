@@ -23,6 +23,7 @@ export const sendCookie = (res: Response, name: string, value: string) => {
     httpOnly: true,
     secure: isProduction,
     sameSite: isProduction ? "none" : "lax",
+    path: "/",
     maxAge:
       name === "refreshToken" ? 1000 * 60 * 60 * 24 * 7 : 1000 * 60 * 60 * 24,
   });

@@ -2,10 +2,13 @@ import express from "express";
 import {
   authControllers,
   forgotPassword,
+  getMe,
   login,
   resetPassword,
 } from "./auth.controller.js";
 import passport from "passport";
+import verifyUser from "../../middleware/verifyUser.js";
+import { PlatformRole } from "../../generated/prisma/enums.js";
 
 const authRouter = express.Router();
 
@@ -32,5 +35,7 @@ authRouter.get(
 authRouter.post("/login", login);
 authRouter.post("/forgot-password", forgotPassword);
 authRouter.post("/reset-password", resetPassword);
+
+authRouter.get("/me", verifyUser(PlatformRole.USER, PlatformRole.ADMIN), getMe);
 
 export default authRouter;

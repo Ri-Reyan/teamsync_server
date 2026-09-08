@@ -61,6 +61,10 @@ const verifyUser = (...allowedRoles: PlatformRole[]) =>
       throw new AppError("User account no longer exists.", 401);
     }
 
+    if (user.status !== "ACTIVE") {
+      throw new AppError("Account is suspended", 403);
+    }
+
     if (allowedRoles.length > 0 && !allowedRoles.includes(user.platformRole)) {
       throw new AppError("Forbidden! You do not have permission.", 403);
     }

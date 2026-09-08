@@ -15,7 +15,7 @@ const main = async () => {
 
     server.listen(credentials.port || 4000, () => {
       console.log(
-        `Server is running on http://localhost:${credentials.port || 4000}`,
+        `⚡ Application successfully booted on http://localhost:${credentials.port || 4000}`,
       );
     });
   } catch (error) {

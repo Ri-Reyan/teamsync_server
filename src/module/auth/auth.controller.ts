@@ -53,7 +53,7 @@ const verifyRegistrationEmail = catchAsync(
     const jwtPayload = {
       id: user.id,
       email: user.email,
-      role: user.platformRole,
+      platformRole: user.platformRole,
       isPremium: user.isPremium,
     };
 
@@ -104,7 +104,7 @@ export const googleCallback = catchAsync(
     const jwtPayload = {
       id: user.id,
       email: user.email,
-      role: user.platformRole,
+      platformRole: user.platformRole,
       isPremium: user.isPremium,
     };
 
@@ -151,7 +151,7 @@ export const login = catchAsync(async (req: Request, res: Response) => {
   const jwtPayload = {
     id: user.id,
     email: user.email,
-    role: user.platformRole,
+    platformRole: user.platformRole,
     isPremium: user.isPremium,
   };
 
@@ -289,8 +289,41 @@ export const resetPassword = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+export const getMe = async (req: Request, res: Response) => {
+  const userId = (req.user as any)?.id;
+
+  if (!userId) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized: User ID not found in token",
+    });
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    omit: {
+      password: true,
+    },
+  });
+
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: "User not found",
+    });
+  }
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "User profile fetched successfully",
+    data: user,
+  });
+};
+
 export const authControllers = {
   register,
   verifyRegistrationEmail,
   googleCallback,
+  getMe,
 };
