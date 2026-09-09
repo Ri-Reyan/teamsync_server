@@ -12,17 +12,25 @@
 export const InvitationStatus = {
   PENDING: 'PENDING',
   ACCEPTED: 'ACCEPTED',
-  DECLINED: 'DECLINED',
-  EXPIRED: 'EXPIRED'
+  DECLINED: 'DECLINED'
 } as const
 
 export type InvitationStatus = (typeof InvitationStatus)[keyof typeof InvitationStatus]
 
 
+export const Role = {
+  OWNER: 'OWNER',
+  ADMIN: 'ADMIN',
+  MEMBER: 'MEMBER'
+} as const
+
+export type Role = (typeof Role)[keyof typeof Role]
+
+
 export const WorkspaceRole = {
   ADMIN: 'ADMIN',
   MEMBER: 'MEMBER',
-  VIEWER: 'VIEWER'
+  OWNER: 'OWNER'
 } as const
 
 export type WorkspaceRole = (typeof WorkspaceRole)[keyof typeof WorkspaceRole]
@@ -50,3 +58,12 @@ export const UserStatus = {
 } as const
 
 export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
+
+
+export const Package = {
+  STARTER: 'STARTER',
+  PROFESSIONAL: 'PROFESSIONAL',
+  ENTERPRISE: 'ENTERPRISE'
+} as const
+
+export type Package = (typeof Package)[keyof typeof Package]

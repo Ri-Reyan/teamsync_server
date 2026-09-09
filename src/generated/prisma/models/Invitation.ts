@@ -26,10 +26,11 @@ export type AggregateInvitation = {
 
 export type InvitationMinAggregateOutputType = {
   id: string | null
-  user_id: string | null
+  sender_id: string | null
   workspace_id: string | null
   member_id: string | null
-  role: string | null
+  member_email: string | null
+  role: $Enums.Role | null
   status: $Enums.InvitationStatus | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -37,10 +38,11 @@ export type InvitationMinAggregateOutputType = {
 
 export type InvitationMaxAggregateOutputType = {
   id: string | null
-  user_id: string | null
+  sender_id: string | null
   workspace_id: string | null
   member_id: string | null
-  role: string | null
+  member_email: string | null
+  role: $Enums.Role | null
   status: $Enums.InvitationStatus | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -48,9 +50,10 @@ export type InvitationMaxAggregateOutputType = {
 
 export type InvitationCountAggregateOutputType = {
   id: number
-  user_id: number
+  sender_id: number
   workspace_id: number
   member_id: number
+  member_email: number
   role: number
   status: number
   createdAt: number
@@ -61,9 +64,10 @@ export type InvitationCountAggregateOutputType = {
 
 export type InvitationMinAggregateInputType = {
   id?: true
-  user_id?: true
+  sender_id?: true
   workspace_id?: true
   member_id?: true
+  member_email?: true
   role?: true
   status?: true
   createdAt?: true
@@ -72,9 +76,10 @@ export type InvitationMinAggregateInputType = {
 
 export type InvitationMaxAggregateInputType = {
   id?: true
-  user_id?: true
+  sender_id?: true
   workspace_id?: true
   member_id?: true
+  member_email?: true
   role?: true
   status?: true
   createdAt?: true
@@ -83,9 +88,10 @@ export type InvitationMaxAggregateInputType = {
 
 export type InvitationCountAggregateInputType = {
   id?: true
-  user_id?: true
+  sender_id?: true
   workspace_id?: true
   member_id?: true
+  member_email?: true
   role?: true
   status?: true
   createdAt?: true
@@ -167,10 +173,11 @@ export type InvitationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 
 export type InvitationGroupByOutputType = {
   id: string
-  user_id: string
+  sender_id: string
   workspace_id: string
   member_id: string | null
-  role: string
+  member_email: string
+  role: $Enums.Role
   status: $Enums.InvitationStatus
   createdAt: Date
   updatedAt: Date
@@ -199,10 +206,11 @@ export type InvitationWhereInput = {
   OR?: Prisma.InvitationWhereInput[]
   NOT?: Prisma.InvitationWhereInput | Prisma.InvitationWhereInput[]
   id?: Prisma.UuidFilter<"Invitation"> | string
-  user_id?: Prisma.UuidFilter<"Invitation"> | string
+  sender_id?: Prisma.UuidFilter<"Invitation"> | string
   workspace_id?: Prisma.UuidFilter<"Invitation"> | string
   member_id?: Prisma.UuidNullableFilter<"Invitation"> | string | null
-  role?: Prisma.StringFilter<"Invitation"> | string
+  member_email?: Prisma.StringFilter<"Invitation"> | string
+  role?: Prisma.EnumRoleFilter<"Invitation"> | $Enums.Role
   status?: Prisma.EnumInvitationStatusFilter<"Invitation"> | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFilter<"Invitation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Invitation"> | Date | string
@@ -213,9 +221,10 @@ export type InvitationWhereInput = {
 
 export type InvitationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  user_id?: Prisma.SortOrder
+  sender_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
   member_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  member_email?: Prisma.SortOrder
   role?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -227,26 +236,28 @@ export type InvitationOrderByWithRelationInput = {
 
 export type InvitationWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  member_email?: string
   AND?: Prisma.InvitationWhereInput | Prisma.InvitationWhereInput[]
   OR?: Prisma.InvitationWhereInput[]
   NOT?: Prisma.InvitationWhereInput | Prisma.InvitationWhereInput[]
-  user_id?: Prisma.UuidFilter<"Invitation"> | string
+  sender_id?: Prisma.UuidFilter<"Invitation"> | string
   workspace_id?: Prisma.UuidFilter<"Invitation"> | string
   member_id?: Prisma.UuidNullableFilter<"Invitation"> | string | null
-  role?: Prisma.StringFilter<"Invitation"> | string
+  role?: Prisma.EnumRoleFilter<"Invitation"> | $Enums.Role
   status?: Prisma.EnumInvitationStatusFilter<"Invitation"> | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFilter<"Invitation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Invitation"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
   member?: Prisma.XOR<Prisma.MemberNullableScalarRelationFilter, Prisma.MemberWhereInput> | null
-}, "id">
+}, "id" | "member_email">
 
 export type InvitationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  user_id?: Prisma.SortOrder
+  sender_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
   member_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  member_email?: Prisma.SortOrder
   role?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -261,10 +272,11 @@ export type InvitationScalarWhereWithAggregatesInput = {
   OR?: Prisma.InvitationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.InvitationScalarWhereWithAggregatesInput | Prisma.InvitationScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Invitation"> | string
-  user_id?: Prisma.UuidWithAggregatesFilter<"Invitation"> | string
+  sender_id?: Prisma.UuidWithAggregatesFilter<"Invitation"> | string
   workspace_id?: Prisma.UuidWithAggregatesFilter<"Invitation"> | string
   member_id?: Prisma.UuidNullableWithAggregatesFilter<"Invitation"> | string | null
-  role?: Prisma.StringWithAggregatesFilter<"Invitation"> | string
+  member_email?: Prisma.StringWithAggregatesFilter<"Invitation"> | string
+  role?: Prisma.EnumRoleWithAggregatesFilter<"Invitation"> | $Enums.Role
   status?: Prisma.EnumInvitationStatusWithAggregatesFilter<"Invitation"> | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Invitation"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Invitation"> | Date | string
@@ -272,7 +284,8 @@ export type InvitationScalarWhereWithAggregatesInput = {
 
 export type InvitationCreateInput = {
   id?: string
-  role: string
+  member_email: string
+  role?: $Enums.Role
   status?: $Enums.InvitationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -283,10 +296,11 @@ export type InvitationCreateInput = {
 
 export type InvitationUncheckedCreateInput = {
   id?: string
-  user_id: string
+  sender_id: string
   workspace_id: string
   member_id?: string | null
-  role: string
+  member_email: string
+  role?: $Enums.Role
   status?: $Enums.InvitationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -294,7 +308,8 @@ export type InvitationUncheckedCreateInput = {
 
 export type InvitationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -305,10 +320,11 @@ export type InvitationUpdateInput = {
 
 export type InvitationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sender_id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
   member_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -316,10 +332,11 @@ export type InvitationUncheckedUpdateInput = {
 
 export type InvitationCreateManyInput = {
   id?: string
-  user_id: string
+  sender_id: string
   workspace_id: string
   member_id?: string | null
-  role: string
+  member_email: string
+  role?: $Enums.Role
   status?: $Enums.InvitationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -327,7 +344,8 @@ export type InvitationCreateManyInput = {
 
 export type InvitationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -335,10 +353,11 @@ export type InvitationUpdateManyMutationInput = {
 
 export type InvitationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sender_id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
   member_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -346,9 +365,10 @@ export type InvitationUncheckedUpdateManyInput = {
 
 export type InvitationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  user_id?: Prisma.SortOrder
+  sender_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
   member_id?: Prisma.SortOrder
+  member_email?: Prisma.SortOrder
   role?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -357,9 +377,10 @@ export type InvitationCountOrderByAggregateInput = {
 
 export type InvitationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  user_id?: Prisma.SortOrder
+  sender_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
   member_id?: Prisma.SortOrder
+  member_email?: Prisma.SortOrder
   role?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -368,9 +389,10 @@ export type InvitationMaxOrderByAggregateInput = {
 
 export type InvitationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  user_id?: Prisma.SortOrder
+  sender_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
   member_id?: Prisma.SortOrder
+  member_email?: Prisma.SortOrder
   role?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -389,6 +411,10 @@ export type InvitationOrderByRelationAggregateInput = {
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type EnumRoleFieldUpdateOperationsInput = {
+  set?: $Enums.Role
 }
 
 export type EnumInvitationStatusFieldUpdateOperationsInput = {
@@ -531,7 +557,8 @@ export type InvitationUncheckedUpdateManyWithoutWorkspaceNestedInput = {
 
 export type InvitationCreateWithoutMemberInput = {
   id?: string
-  role: string
+  member_email: string
+  role?: $Enums.Role
   status?: $Enums.InvitationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -541,9 +568,10 @@ export type InvitationCreateWithoutMemberInput = {
 
 export type InvitationUncheckedCreateWithoutMemberInput = {
   id?: string
-  user_id: string
+  sender_id: string
   workspace_id: string
-  role: string
+  member_email: string
+  role?: $Enums.Role
   status?: $Enums.InvitationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -580,10 +608,11 @@ export type InvitationScalarWhereInput = {
   OR?: Prisma.InvitationScalarWhereInput[]
   NOT?: Prisma.InvitationScalarWhereInput | Prisma.InvitationScalarWhereInput[]
   id?: Prisma.UuidFilter<"Invitation"> | string
-  user_id?: Prisma.UuidFilter<"Invitation"> | string
+  sender_id?: Prisma.UuidFilter<"Invitation"> | string
   workspace_id?: Prisma.UuidFilter<"Invitation"> | string
   member_id?: Prisma.UuidNullableFilter<"Invitation"> | string | null
-  role?: Prisma.StringFilter<"Invitation"> | string
+  member_email?: Prisma.StringFilter<"Invitation"> | string
+  role?: Prisma.EnumRoleFilter<"Invitation"> | $Enums.Role
   status?: Prisma.EnumInvitationStatusFilter<"Invitation"> | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFilter<"Invitation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Invitation"> | Date | string
@@ -591,7 +620,8 @@ export type InvitationScalarWhereInput = {
 
 export type InvitationCreateWithoutUserInput = {
   id?: string
-  role: string
+  member_email: string
+  role?: $Enums.Role
   status?: $Enums.InvitationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -603,7 +633,8 @@ export type InvitationUncheckedCreateWithoutUserInput = {
   id?: string
   workspace_id: string
   member_id?: string | null
-  role: string
+  member_email: string
+  role?: $Enums.Role
   status?: $Enums.InvitationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -637,7 +668,8 @@ export type InvitationUpdateManyWithWhereWithoutUserInput = {
 
 export type InvitationCreateWithoutWorkspaceInput = {
   id?: string
-  role: string
+  member_email: string
+  role?: $Enums.Role
   status?: $Enums.InvitationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -647,9 +679,10 @@ export type InvitationCreateWithoutWorkspaceInput = {
 
 export type InvitationUncheckedCreateWithoutWorkspaceInput = {
   id?: string
-  user_id: string
+  sender_id: string
   member_id?: string | null
-  role: string
+  member_email: string
+  role?: $Enums.Role
   status?: $Enums.InvitationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -683,9 +716,10 @@ export type InvitationUpdateManyWithWhereWithoutWorkspaceInput = {
 
 export type InvitationCreateManyMemberInput = {
   id?: string
-  user_id: string
+  sender_id: string
   workspace_id: string
-  role: string
+  member_email: string
+  role?: $Enums.Role
   status?: $Enums.InvitationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -693,7 +727,8 @@ export type InvitationCreateManyMemberInput = {
 
 export type InvitationUpdateWithoutMemberInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -703,9 +738,10 @@ export type InvitationUpdateWithoutMemberInput = {
 
 export type InvitationUncheckedUpdateWithoutMemberInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sender_id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -713,9 +749,10 @@ export type InvitationUncheckedUpdateWithoutMemberInput = {
 
 export type InvitationUncheckedUpdateManyWithoutMemberInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sender_id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -725,7 +762,8 @@ export type InvitationCreateManyUserInput = {
   id?: string
   workspace_id: string
   member_id?: string | null
-  role: string
+  member_email: string
+  role?: $Enums.Role
   status?: $Enums.InvitationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -733,7 +771,8 @@ export type InvitationCreateManyUserInput = {
 
 export type InvitationUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -745,7 +784,8 @@ export type InvitationUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
   member_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -755,7 +795,8 @@ export type InvitationUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
   member_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -763,9 +804,10 @@ export type InvitationUncheckedUpdateManyWithoutUserInput = {
 
 export type InvitationCreateManyWorkspaceInput = {
   id?: string
-  user_id: string
+  sender_id: string
   member_id?: string | null
-  role: string
+  member_email: string
+  role?: $Enums.Role
   status?: $Enums.InvitationStatus
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -773,7 +815,8 @@ export type InvitationCreateManyWorkspaceInput = {
 
 export type InvitationUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -783,9 +826,10 @@ export type InvitationUpdateWithoutWorkspaceInput = {
 
 export type InvitationUncheckedUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sender_id?: Prisma.StringFieldUpdateOperationsInput | string
   member_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -793,9 +837,10 @@ export type InvitationUncheckedUpdateWithoutWorkspaceInput = {
 
 export type InvitationUncheckedUpdateManyWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  sender_id?: Prisma.StringFieldUpdateOperationsInput | string
   member_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  member_email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   status?: Prisma.EnumInvitationStatusFieldUpdateOperationsInput | $Enums.InvitationStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -805,9 +850,10 @@ export type InvitationUncheckedUpdateManyWithoutWorkspaceInput = {
 
 export type InvitationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  user_id?: boolean
+  sender_id?: boolean
   workspace_id?: boolean
   member_id?: boolean
+  member_email?: boolean
   role?: boolean
   status?: boolean
   createdAt?: boolean
@@ -819,9 +865,10 @@ export type InvitationSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type InvitationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  user_id?: boolean
+  sender_id?: boolean
   workspace_id?: boolean
   member_id?: boolean
+  member_email?: boolean
   role?: boolean
   status?: boolean
   createdAt?: boolean
@@ -833,9 +880,10 @@ export type InvitationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 
 export type InvitationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  user_id?: boolean
+  sender_id?: boolean
   workspace_id?: boolean
   member_id?: boolean
+  member_email?: boolean
   role?: boolean
   status?: boolean
   createdAt?: boolean
@@ -847,16 +895,17 @@ export type InvitationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 
 export type InvitationSelectScalar = {
   id?: boolean
-  user_id?: boolean
+  sender_id?: boolean
   workspace_id?: boolean
   member_id?: boolean
+  member_email?: boolean
   role?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type InvitationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "workspace_id" | "member_id" | "role" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["invitation"]>
+export type InvitationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sender_id" | "workspace_id" | "member_id" | "member_email" | "role" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["invitation"]>
 export type InvitationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
@@ -882,10 +931,11 @@ export type $InvitationPayload<ExtArgs extends runtime.Types.Extensions.Internal
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    user_id: string
+    sender_id: string
     workspace_id: string
     member_id: string | null
-    role: string
+    member_email: string
+    role: $Enums.Role
     status: $Enums.InvitationStatus
     createdAt: Date
     updatedAt: Date
@@ -1316,10 +1366,11 @@ export interface Prisma__InvitationClient<T, Null = never, ExtArgs extends runti
  */
 export interface InvitationFieldRefs {
   readonly id: Prisma.FieldRef<"Invitation", 'String'>
-  readonly user_id: Prisma.FieldRef<"Invitation", 'String'>
+  readonly sender_id: Prisma.FieldRef<"Invitation", 'String'>
   readonly workspace_id: Prisma.FieldRef<"Invitation", 'String'>
   readonly member_id: Prisma.FieldRef<"Invitation", 'String'>
-  readonly role: Prisma.FieldRef<"Invitation", 'String'>
+  readonly member_email: Prisma.FieldRef<"Invitation", 'String'>
+  readonly role: Prisma.FieldRef<"Invitation", 'Role'>
   readonly status: Prisma.FieldRef<"Invitation", 'InvitationStatus'>
   readonly createdAt: Prisma.FieldRef<"Invitation", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Invitation", 'DateTime'>

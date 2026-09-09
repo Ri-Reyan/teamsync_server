@@ -9,13 +9,13 @@ const main = async () => {
 
   try {
     await prisma.$connect();
-    console.log("⚡ [Supabase]: Connected successfully");
+    console.log("◇ [Supabase]: Connected successfully");
 
     await connectRedis();
 
     server.listen(credentials.port || 4000, () => {
       console.log(
-        `⚡ Application successfully booted on http://localhost:${credentials.port || 4000}`,
+        `◇ Application successfully booted on http://localhost:${credentials.port || 4000}`,
       );
     });
   } catch (error) {

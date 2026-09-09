@@ -245,10 +245,10 @@ export type WorkspaceOrderByWithRelationInput = {
 
 export type WorkspaceWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  name?: string
   AND?: Prisma.WorkspaceWhereInput | Prisma.WorkspaceWhereInput[]
   OR?: Prisma.WorkspaceWhereInput[]
   NOT?: Prisma.WorkspaceWhereInput | Prisma.WorkspaceWhereInput[]
-  name?: Prisma.StringFilter<"Workspace"> | string
   owner_id?: Prisma.UuidFilter<"Workspace"> | string
   project_count?: Prisma.IntFilter<"Workspace"> | number
   createdAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
@@ -257,7 +257,7 @@ export type WorkspaceWhereUniqueInput = Prisma.AtLeast<{
   projects?: Prisma.ProjectListRelationFilter
   members?: Prisma.MemberListRelationFilter
   invitations?: Prisma.InvitationListRelationFilter
-}, "id">
+}, "id" | "name">
 
 export type WorkspaceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

@@ -982,9 +982,10 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const InvitationScalarFieldEnum = {
   id: 'id',
-  user_id: 'user_id',
+  sender_id: 'sender_id',
   workspace_id: 'workspace_id',
   member_id: 'member_id',
+  member_email: 'member_email',
   role: 'role',
   status: 'status',
   createdAt: 'createdAt',
@@ -1054,6 +1055,7 @@ export const UserScalarFieldEnum = {
   password: 'password',
   platformRole: 'platformRole',
   isPremium: 'isPremium',
+  package: 'package',
   signUpMethod: 'signUpMethod',
   status: 'status',
   createdAt: 'createdAt',
@@ -1116,6 +1118,20 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'String[]'
  */
 export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Role'
+ */
+export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+    
+
+
+/**
+ * Reference to a field of type 'Role[]'
+ */
+export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
     
 
 
@@ -1193,6 +1209,20 @@ export type ListEnumPlatformRoleFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'Package'
+ */
+export type EnumPackageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Package'>
+    
+
+
+/**
+ * Reference to a field of type 'Package[]'
+ */
+export type ListEnumPackageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Package[]'>
     
 
 

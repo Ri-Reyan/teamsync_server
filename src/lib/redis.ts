@@ -15,7 +15,7 @@ const redisClient = createClient({
 
 // Event Listeners for Better Debugging
 redisClient.on("connect", () => {
-  console.log("⚡ [Redis]: Connected successfully");
+  console.log("◇ [Redis]: Connected successfully");
 });
 
 redisClient.on("error", (err) => {

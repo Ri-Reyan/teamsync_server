@@ -31,6 +31,7 @@ export type UserMinAggregateOutputType = {
   password: string | null
   platformRole: $Enums.PlatformRole | null
   isPremium: boolean | null
+  package: $Enums.Package | null
   signUpMethod: $Enums.SignUpMethod | null
   status: $Enums.UserStatus | null
   createdAt: Date | null
@@ -44,6 +45,7 @@ export type UserMaxAggregateOutputType = {
   password: string | null
   platformRole: $Enums.PlatformRole | null
   isPremium: boolean | null
+  package: $Enums.Package | null
   signUpMethod: $Enums.SignUpMethod | null
   status: $Enums.UserStatus | null
   createdAt: Date | null
@@ -57,6 +59,7 @@ export type UserCountAggregateOutputType = {
   password: number
   platformRole: number
   isPremium: number
+  package: number
   signUpMethod: number
   status: number
   createdAt: number
@@ -72,6 +75,7 @@ export type UserMinAggregateInputType = {
   password?: true
   platformRole?: true
   isPremium?: true
+  package?: true
   signUpMethod?: true
   status?: true
   createdAt?: true
@@ -85,6 +89,7 @@ export type UserMaxAggregateInputType = {
   password?: true
   platformRole?: true
   isPremium?: true
+  package?: true
   signUpMethod?: true
   status?: true
   createdAt?: true
@@ -98,6 +103,7 @@ export type UserCountAggregateInputType = {
   password?: true
   platformRole?: true
   isPremium?: true
+  package?: true
   signUpMethod?: true
   status?: true
   createdAt?: true
@@ -184,6 +190,7 @@ export type UserGroupByOutputType = {
   password: string | null
   platformRole: $Enums.PlatformRole
   isPremium: boolean
+  package: $Enums.Package
   signUpMethod: $Enums.SignUpMethod
   status: $Enums.UserStatus
   createdAt: Date
@@ -218,6 +225,7 @@ export type UserWhereInput = {
   password?: Prisma.StringNullableFilter<"User"> | string | null
   platformRole?: Prisma.EnumPlatformRoleFilter<"User"> | $Enums.PlatformRole
   isPremium?: Prisma.BoolFilter<"User"> | boolean
+  package?: Prisma.EnumPackageFilter<"User"> | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFilter<"User"> | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -234,6 +242,7 @@ export type UserOrderByWithRelationInput = {
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   platformRole?: Prisma.SortOrder
   isPremium?: Prisma.SortOrder
+  package?: Prisma.SortOrder
   signUpMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -253,6 +262,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   password?: Prisma.StringNullableFilter<"User"> | string | null
   platformRole?: Prisma.EnumPlatformRoleFilter<"User"> | $Enums.PlatformRole
   isPremium?: Prisma.BoolFilter<"User"> | boolean
+  package?: Prisma.EnumPackageFilter<"User"> | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFilter<"User"> | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -269,6 +279,7 @@ export type UserOrderByWithAggregationInput = {
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   platformRole?: Prisma.SortOrder
   isPremium?: Prisma.SortOrder
+  package?: Prisma.SortOrder
   signUpMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -288,6 +299,7 @@ export type UserScalarWhereWithAggregatesInput = {
   password?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   platformRole?: Prisma.EnumPlatformRoleWithAggregatesFilter<"User"> | $Enums.PlatformRole
   isPremium?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  package?: Prisma.EnumPackageWithAggregatesFilter<"User"> | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodWithAggregatesFilter<"User"> | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusWithAggregatesFilter<"User"> | $Enums.UserStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -301,6 +313,7 @@ export type UserCreateInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
+  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
@@ -317,6 +330,7 @@ export type UserUncheckedCreateInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
+  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
@@ -333,6 +347,7 @@ export type UserUpdateInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -349,6 +364,7 @@ export type UserUncheckedUpdateInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -365,6 +381,7 @@ export type UserCreateManyInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
+  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
@@ -378,6 +395,7 @@ export type UserUpdateManyMutationInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -391,6 +409,7 @@ export type UserUncheckedUpdateManyInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -409,6 +428,7 @@ export type UserCountOrderByAggregateInput = {
   password?: Prisma.SortOrder
   platformRole?: Prisma.SortOrder
   isPremium?: Prisma.SortOrder
+  package?: Prisma.SortOrder
   signUpMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -422,6 +442,7 @@ export type UserMaxOrderByAggregateInput = {
   password?: Prisma.SortOrder
   platformRole?: Prisma.SortOrder
   isPremium?: Prisma.SortOrder
+  package?: Prisma.SortOrder
   signUpMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -435,6 +456,7 @@ export type UserMinOrderByAggregateInput = {
   password?: Prisma.SortOrder
   platformRole?: Prisma.SortOrder
   isPremium?: Prisma.SortOrder
+  package?: Prisma.SortOrder
   signUpMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -477,6 +499,10 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type EnumPackageFieldUpdateOperationsInput = {
+  set?: $Enums.Package
+}
+
 export type EnumSignUpMethodFieldUpdateOperationsInput = {
   set?: $Enums.SignUpMethod
 }
@@ -506,6 +532,7 @@ export type UserCreateWithoutInvitationsInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
+  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
@@ -521,6 +548,7 @@ export type UserUncheckedCreateWithoutInvitationsInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
+  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
@@ -552,6 +580,7 @@ export type UserUpdateWithoutInvitationsInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -567,6 +596,7 @@ export type UserUncheckedUpdateWithoutInvitationsInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -582,6 +612,7 @@ export type UserCreateWithoutMembersInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
+  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
@@ -597,6 +628,7 @@ export type UserUncheckedCreateWithoutMembersInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
+  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
@@ -628,6 +660,7 @@ export type UserUpdateWithoutMembersInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -643,6 +676,7 @@ export type UserUncheckedUpdateWithoutMembersInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -658,6 +692,7 @@ export type UserCreateWithoutWorkspacesInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
+  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
@@ -673,6 +708,7 @@ export type UserUncheckedCreateWithoutWorkspacesInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
+  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
@@ -704,6 +740,7 @@ export type UserUpdateWithoutWorkspacesInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -719,6 +756,7 @@ export type UserUncheckedUpdateWithoutWorkspacesInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -783,6 +821,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   password?: boolean
   platformRole?: boolean
   isPremium?: boolean
+  package?: boolean
   signUpMethod?: boolean
   status?: boolean
   createdAt?: boolean
@@ -800,6 +839,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   password?: boolean
   platformRole?: boolean
   isPremium?: boolean
+  package?: boolean
   signUpMethod?: boolean
   status?: boolean
   createdAt?: boolean
@@ -813,6 +853,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   password?: boolean
   platformRole?: boolean
   isPremium?: boolean
+  package?: boolean
   signUpMethod?: boolean
   status?: boolean
   createdAt?: boolean
@@ -826,13 +867,14 @@ export type UserSelectScalar = {
   password?: boolean
   platformRole?: boolean
   isPremium?: boolean
+  package?: boolean
   signUpMethod?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "email" | "password" | "platformRole" | "isPremium" | "signUpMethod" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "email" | "password" | "platformRole" | "isPremium" | "package" | "signUpMethod" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workspaces?: boolean | Prisma.User$workspacesArgs<ExtArgs>
   members?: boolean | Prisma.User$membersArgs<ExtArgs>
@@ -856,6 +898,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     password: string | null
     platformRole: $Enums.PlatformRole
     isPremium: boolean
+    package: $Enums.Package
     signUpMethod: $Enums.SignUpMethod
     status: $Enums.UserStatus
     createdAt: Date
@@ -1292,6 +1335,7 @@ export interface UserFieldRefs {
   readonly password: Prisma.FieldRef<"User", 'String'>
   readonly platformRole: Prisma.FieldRef<"User", 'PlatformRole'>
   readonly isPremium: Prisma.FieldRef<"User", 'Boolean'>
+  readonly package: Prisma.FieldRef<"User", 'Package'>
   readonly signUpMethod: Prisma.FieldRef<"User", 'SignUpMethod'>
   readonly status: Prisma.FieldRef<"User", 'UserStatus'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>

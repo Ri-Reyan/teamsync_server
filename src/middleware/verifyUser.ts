@@ -13,6 +13,7 @@ export type TokenPayload = JwtPayload & {
   email: string;
   platformRole: PlatformRole;
   isPremium: boolean;
+  package: string;
 };
 
 const verifyUser = (...allowedRoles: PlatformRole[]) =>
@@ -75,6 +76,7 @@ const verifyUser = (...allowedRoles: PlatformRole[]) =>
       email: user.email,
       platformRole: user.platformRole,
       isPremium: user.isPremium,
+      package: user.package,
     };
 
     if (isAccessTokenExpired || !accessToken) {

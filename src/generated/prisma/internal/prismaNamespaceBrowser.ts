@@ -78,9 +78,10 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const InvitationScalarFieldEnum = {
   id: 'id',
-  user_id: 'user_id',
+  sender_id: 'sender_id',
   workspace_id: 'workspace_id',
   member_id: 'member_id',
+  member_email: 'member_email',
   role: 'role',
   status: 'status',
   createdAt: 'createdAt',
@@ -150,6 +151,7 @@ export const UserScalarFieldEnum = {
   password: 'password',
   platformRole: 'platformRole',
   isPremium: 'isPremium',
+  package: 'package',
   signUpMethod: 'signUpMethod',
   status: 'status',
   createdAt: 'createdAt',

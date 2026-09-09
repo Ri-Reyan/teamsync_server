@@ -301,8 +301,13 @@ export const getMe = async (req: Request, res: Response) => {
 
   const user = await prisma.user.findUnique({
     where: { id: userId },
-    omit: {
-      password: true,
+    select: {
+      id: true,
+      username: true,
+      email: true,
+      platformRole: true,
+      isPremium: true,
+      package: true,
     },
   });
 
