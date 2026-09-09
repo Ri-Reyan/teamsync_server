@@ -2,7 +2,7 @@ import { Router } from "express";
 import { workspaceController } from "./worksapce.controller.js";
 import verifyUser from "../../../middleware/verifyUser.js";
 import { PlatformRole } from "../../../generated/prisma/enums.js";
-import invitationRouter from "../invite/invite.route.js";
+import invitationRouter from "./invite/invite.route.js";
 
 const workspaceRouter = Router();
 

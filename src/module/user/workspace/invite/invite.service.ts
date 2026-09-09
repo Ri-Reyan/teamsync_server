@@ -1,7 +1,8 @@
-import AppError from "../../../global/AppError.js";
-import { prisma } from "../../../lib/prisma.js";
-import { sendEmail } from "../../../utils/sendEmail.js";
+import AppError from "../../../../global/AppError.js";
+import { prisma } from "../../../../lib/prisma.js";
+import { sendEmail } from "../../../../utils/sendEmail.js";
 import {
+  AcceptInvitationPayloadType,
   GetInvitationPayloadType,
   SendInvitationPayloadType,
 } from "./invite.interface.js";
@@ -131,7 +132,8 @@ const sendInvitationService = async (payload: SendInvitationPayloadType) => {
   });
 
   const clientBaseUrl = process.env.CLIENT_URL;
-  const invitationLink = `${clientBaseUrl}/accept-invitation?id=${invitation.id}`;
+
+  const invitationLink = `${clientBaseUrl}/dashboard/accept-invitation?id=${invitation.id}`;
 
   const templatePath = path.join(process.cwd(), "src/views/invitation.ejs");
 
@@ -151,7 +153,49 @@ const sendInvitationService = async (payload: SendInvitationPayloadType) => {
   return invitation;
 };
 
+const acceptInvitationService = async (
+  payload: AcceptInvitationPayloadType,
+) => {
+  const { id, user_id } = payload;
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: user_id,
+      status: "ACTIVE",
+    },
+  });
+
+  if (!user) {
+    throw new AppError("user not found", 400);
+  }
+
+  const isInvitationExists = await prisma.invitation.findUnique({
+    where: {
+      id,
+      status: "PENDING",
+      member_email: user.email,
+    },
+  });
+
+  if (!isInvitationExists) {
+    throw new AppError("Invitation not found", 400);
+  }
+
+  const updatedInvitation = await prisma.invitation.update({
+    where: {
+      id,
+      member_email: user.email,
+    },
+    data: {
+      status: "ACCEPTED",
+    },
+  });
+
+  return updatedInvitation;
+};
+
 export const invitationService = {
   getInvitationService,
   sendInvitationService,
+  acceptInvitationService,
 };

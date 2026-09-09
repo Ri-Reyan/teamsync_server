@@ -1,6 +1,6 @@
 import express from "express";
-import verifyUser from "../../../middleware/verifyUser.js";
-import { PlatformRole } from "../../../generated/prisma/enums.js";
+import verifyUser from "../../../../middleware/verifyUser.js";
+import { PlatformRole } from "../../../../generated/prisma/enums.js";
 import { invitationController } from "./invite.controller.js";
 
 const invitationRouter = express.Router();
@@ -15,6 +15,12 @@ invitationRouter.post(
   "/:id/invite",
   verifyUser(PlatformRole.USER),
   invitationController.sendInvitation,
+);
+
+invitationRouter.post(
+  "/invitations/:id/accept",
+  verifyUser(PlatformRole.USER),
+  invitationController.acceptInvitation,
 );
 
 export default invitationRouter;
