@@ -23,4 +23,10 @@ invitationRouter.post(
   invitationController.acceptInvitation,
 );
 
+invitationRouter.delete(
+  "/:id/invite",
+  verifyUser(PlatformRole.USER),
+  invitationController.cancelInvitation,
+);
+
 export default invitationRouter;

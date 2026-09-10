@@ -16,3 +16,9 @@ export interface AcceptInvitationPayloadType {
   id: string;
   user_id: string;
 }
+
+export interface DeleteInvitationPayloadType {
+  id: string;
+  user_id: string;
+  inviteId: string;
+}

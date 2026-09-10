@@ -80,12 +80,39 @@ const acceptInvitation = catchAsync(async (req: Request, res: Response) => {
     user_id: user.id,
   };
 
-  const invitation = await invitationService.acceptInvitationService(payload);
+  const member = await invitationService.acceptInvitationService(payload);
 
   sendResponse(res, {
     success: true,
     statusCode: 200,
     message: "Invitation accepted sucessfully",
+    data: member,
+  });
+});
+
+const cancelInvitation = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id as string;
+
+  const { inviteId } = req.body;
+
+  const user = req.user;
+
+  if (!user) {
+    throw new AppError("User not found.", 400);
+  }
+
+  const payload = {
+    id,
+    user_id: user.id,
+    inviteId,
+  };
+
+  await invitationService.deleteInvitationService(payload);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Invitation deleted sucessfully",
   });
 });
 
@@ -93,4 +120,5 @@ export const invitationController = {
   getInvitations,
   sendInvitation,
   acceptInvitation,
+  cancelInvitation,
 };

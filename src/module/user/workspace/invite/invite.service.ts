@@ -3,11 +3,13 @@ import { prisma } from "../../../../lib/prisma.js";
 import { sendEmail } from "../../../../utils/sendEmail.js";
 import {
   AcceptInvitationPayloadType,
+  DeleteInvitationPayloadType,
   GetInvitationPayloadType,
   SendInvitationPayloadType,
 } from "./invite.interface.js";
 import path from "path";
 import ejs from "ejs";
+import { Role } from "../../../../generated/prisma/enums.js";
 
 const getInvitationService = async (paylaod: GetInvitationPayloadType) => {
   const user = await prisma.user.findUnique({
@@ -191,11 +193,75 @@ const acceptInvitationService = async (
     },
   });
 
-  return updatedInvitation;
+  const member = await prisma.member.create({
+    data: {
+      workspace_id: isInvitationExists.workspace_id,
+      user_id: user.id,
+      role: isInvitationExists.role,
+    },
+  });
+
+  return member;
+};
+
+const deleteInvitationService = async (
+  payload: DeleteInvitationPayloadType,
+) => {
+  const { id, user_id, inviteId } = payload;
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: user_id,
+      status: "ACTIVE",
+    },
+  });
+
+  if (!user) {
+    throw new AppError("user not found", 400);
+  }
+
+  const isWorkspaceExits = await prisma.workspace.findUnique({
+    where: {
+      id,
+      owner_id: user_id,
+    },
+    include: {
+      members: true,
+    },
+  });
+
+  if (!isWorkspaceExits) {
+    throw new AppError("workspace not found", 400);
+  }
+
+  const memeber = await prisma.member.findFirst({
+    where: {
+      user_id: user.id,
+      workspace_id: isWorkspaceExits.id,
+    },
+  });
+
+  if (!memeber) {
+    throw new AppError("member not found", 400);
+  }
+
+  if (memeber.role !== "ADMIN" && memeber.role !== "OWNER") {
+    throw new AppError("You are not allowed to perform this action", 403);
+  }
+
+  const deleteInvitation = await prisma.invitation.delete({
+    where: {
+      id: inviteId,
+      workspace_id: isWorkspaceExits.id,
+    },
+  });
+
+  return deleteInvitation;
 };
 
 export const invitationService = {
   getInvitationService,
   sendInvitationService,
   acceptInvitationService,
+  deleteInvitationService,
 };
