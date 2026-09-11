@@ -35,6 +35,24 @@ workspaceRouter.delete(
   workspaceController.removeWorkspace,
 );
 
+workspaceRouter.delete(
+  "/:workspaceId/leave",
+  verifyUser(PlatformRole.USER),
+  workspaceController.leaveWorkspace,
+);
+
+workspaceRouter.get(
+  "/user/workspace/:workspaceId/members",
+  verifyUser(PlatformRole.USER),
+  workspaceController.getWorkspace,
+);
+
+workspaceRouter.patch(
+  "/user/workspace/:workspaceId/transfer-ownership",
+  verifyUser(PlatformRole.USER),
+  workspaceController.transferWorkspaceOwnership,
+);
+
 // mount invitation
 workspaceRouter.use(invitationRouter);
 

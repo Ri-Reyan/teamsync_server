@@ -11,3 +11,9 @@ export type CreateWorkspacePayload = {
 export type UpdateWorkspacePayload = CreateWorkspacePayload & {
   workspace_id: string;
 };
+
+export type TransferWorkspacePayload = {
+  currentUserId: string;
+  workspaceId: string;
+  newOwnerId: string;
+};
