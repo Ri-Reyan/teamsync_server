@@ -22,11 +22,23 @@ const getWorkspaceMembers = catchAsync(async (req: Request, res: Response) => {
     user_id: user.id,
   });
 
+  const formattedMembers = result.map((m) => ({
+    id: m.id, // Member Table ID
+    role: m.role, // Workspace Member Role (OWNER / ADMIN / MEMBER)
+    createdAt: m.createdAt,
+    user: {
+      id: m.user.id,
+      name: m.user.username || m.user.email.split("@")[0], // Fallback name
+      email: m.user.email,
+      role: m.user.platformRole,
+    },
+  }));
+
   sendResponse(res, {
-    statusCode: 200,
     success: true,
+    statusCode: 200,
     message: "Members retrieved successfully",
-    data: result,
+    data: formattedMembers,
   });
 });
 

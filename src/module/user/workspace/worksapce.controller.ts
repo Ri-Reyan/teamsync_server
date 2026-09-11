@@ -9,9 +9,23 @@ import { prisma } from "../../../lib/prisma.js";
 const getWorkspace = catchAsync(async (req: Request, res: Response) => {
   const user = req.user;
 
-  const workspace = await prisma.workspace.findMany({
+  const workspaces = await prisma.workspace.findMany({
     where: {
-      owner_id: user?.id,
+      OR: [
+        {
+          owner_id: user?.id,
+        },
+        {
+          members: {
+            some: {
+              user_id: user?.id,
+            },
+          },
+        },
+      ],
+    },
+    include: {
+      members: true,
     },
   });
 
@@ -19,7 +33,7 @@ const getWorkspace = catchAsync(async (req: Request, res: Response) => {
     success: true,
     statusCode: 200,
     message: "Workspace fetched successfuly",
-    data: workspace,
+    data: workspaces,
   });
 });
 
@@ -165,7 +179,7 @@ export const transferWorkspaceOwnership = async (
   req: Request,
   res: Response,
 ) => {
-  const currentUserId = req.user?.id; // Extracted from Auth middleware
+  const currentUserId = req.user?.id;
   const workspaceId = req.params.workspaceId as string;
   const newOwnerId = req.body.newOwnerId as string;
 
@@ -187,54 +201,13 @@ export const transferWorkspaceOwnership = async (
     newOwnerId,
   };
 
-  const newOwner = await workspaceService.transferWorkspace(payload);
+  const updatedWorkspace = await workspaceService.transferWorkspace(payload);
 
   sendResponse(res, {
     success: true,
     statusCode: 200,
     message: "Workspace ownership transferred successfully",
-  });
-};
-
-export const getWorkspaceMembers = async (req: Request, res: Response) => {
-  const currentUserId = req.user?.id;
-  const { workspaceId } = req.params;
-
-  const members = await prisma.member.findMany({
-    where: {
-      workspace_id: workspaceId as string,
-      userId: { not: currentUserId }, // Exclude current user from selection list
-    },
-    select: {
-      id: true,
-      role: true,
-      user: {
-        select: {
-          id: true,
-          username: true,
-          email: true,
-          avatar: true,
-        },
-      },
-    },
-  });
-
-  if (!members) {
-    throw new AppError("members not found", 400);
-  }
-
-  const formattedMembers = members.map((m) => ({
-    id: m.user.id, // User ID used for transfer
-    name: m.user.username,
-    email: m.user.email,
-    avatar: m.user.avatar,
-    role: m.role,
-  }));
-
-  sendResponse(res, {
-    success: true,
-    statusCode: 200,
-    message: "Members fetched",
+    data: updatedWorkspace,
   });
 };
 

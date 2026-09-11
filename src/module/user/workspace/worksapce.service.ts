@@ -100,13 +100,13 @@ const removeWorkspaceService = async (workspaceId: string, userId: string) => {
 const transferWorkspace = async (payload: TransferWorkspacePayload) => {
   const { workspaceId, newOwnerId, currentUserId } = payload;
 
-  // 2. Fetch Workspace and verify current owner
+  // 1. Fetch Workspace and verify current owner
   const workspace = await prisma.workspace.findUnique({
-    where: { id: workspaceId as string },
+    where: { id: workspaceId },
   });
 
   if (!workspace) {
-    throw new AppError("Workspace not found", 400);
+    throw new AppError("Workspace not found", 404);
   }
 
   // Security Check: Only the actual current owner can transfer ownership
@@ -117,12 +117,22 @@ const transferWorkspace = async (payload: TransferWorkspacePayload) => {
     );
   }
 
-  // 3. Verify if the target user is a member of this workspace
+  const isMemberExits = await prisma.member.findUnique({
+    where: {
+      id: newOwnerId,
+    },
+  });
+
+  if (!isMemberExits) {
+    throw new AppError("member not found", 400);
+  }
+
+  // 2. FIXED: Verify if NEW OWNER is a member of this workspace
   const targetMember = await prisma.member.findUnique({
     where: {
       workspace_id_user_id: {
-        workspace_id: workspaceId as string,
-        user_id: currentUserId,
+        workspace_id: workspaceId,
+        user_id: isMemberExits.user_id,
       },
     },
   });
@@ -134,36 +144,40 @@ const transferWorkspace = async (payload: TransferWorkspacePayload) => {
     );
   }
 
-  // 4. Atomic Transaction: Update Workspace owner & swap Member roles
-  await prisma.$transaction(async (tx) => {
-    // Step A: Update primary ownerId on Workspace model
-    await tx.workspace.update({
-      where: { id: workspaceId as string },
-      data: { ownerId: newOwnerId },
+  // 3. Atomic Transaction: Update Workspace owner & swap Member roles
+  const result = await prisma.$transaction(async (tx) => {
+    // Step A: FIXED Field Name -> owner_id
+    const updatedWorkspace = await tx.workspace.update({
+      where: { id: workspaceId },
+      data: { owner_id: isMemberExits.user_id },
     });
 
-    // Step B: Promote target member to OWNER role (or ADMIN depending on your design)
+    // Step B: Promote target member to OWNER role
     await tx.member.update({
       where: {
         workspace_id_user_id: {
-          workspace_id: workspaceId as string,
-          user_id: newOwnerId,
+          workspace_id: workspaceId,
+          user_id: isMemberExits.user_id,
         },
       },
       data: { role: "OWNER" },
     });
 
-    // Step C: Demote former owner to ADMIN (or MEMBER)
+    // Step C: Demote former owner to ADMIN
     await tx.member.update({
       where: {
         workspace_id_user_id: {
-          workspace_id: workspaceId as string,
+          workspace_id: workspaceId,
           user_id: currentUserId,
         },
       },
       data: { role: "ADMIN" },
     });
+
+    return updatedWorkspace;
   });
+
+  return result; // FIXED: returning updated workspace
 };
 
 export const workspaceService = {

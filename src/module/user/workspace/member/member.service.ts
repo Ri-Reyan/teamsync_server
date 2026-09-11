@@ -31,6 +31,7 @@ const getWorkspaceMembersService = async (payload: IGetMembersPayload) => {
           id: true,
           username: true,
           email: true,
+          platformRole: true,
         },
       },
     },
@@ -38,7 +39,6 @@ const getWorkspaceMembersService = async (payload: IGetMembersPayload) => {
       createdAt: "asc",
     },
   });
-
   return members;
 };
 

@@ -4,6 +4,7 @@ import verifyUser from "../../../middleware/verifyUser.js";
 import { PlatformRole } from "../../../generated/prisma/enums.js";
 import invitationRouter from "./invite/invite.route.js";
 import memberRouter from "./member/member.route.js";
+import projectRouter from "./project/project.route.js";
 
 const workspaceRouter = Router();
 
@@ -41,14 +42,8 @@ workspaceRouter.delete(
   workspaceController.leaveWorkspace,
 );
 
-workspaceRouter.get(
-  "/user/workspace/:workspaceId/members",
-  verifyUser(PlatformRole.USER),
-  workspaceController.getWorkspace,
-);
-
 workspaceRouter.patch(
-  "/user/workspace/:workspaceId/transfer-ownership",
+  "/:workspaceId/transfer-ownership",
   verifyUser(PlatformRole.USER),
   workspaceController.transferWorkspaceOwnership,
 );
@@ -57,6 +52,9 @@ workspaceRouter.patch(
 workspaceRouter.use(invitationRouter);
 
 // mount member
-workspaceRouter.use("/", memberRouter);
+workspaceRouter.use(memberRouter);
+
+// mount project
+workspaceRouter.use(projectRouter);
 
 export default workspaceRouter;

@@ -9,7 +9,6 @@ import "./lib/passport.js";
 import passport from "passport";
 import worksapceRouter from "./module/user/workspace/worksapce.route.js";
 import cookieParser from "cookie-parser";
-import invitationRouter from "./module/user/workspace/invite/invite.route.js";
 
 const app = express();
 
