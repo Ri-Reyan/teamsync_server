@@ -32,6 +32,6 @@ projectRouter.delete(
 );
 
 // sprint mount
-projectRouter.use(sprintRouter);
+projectRouter.use("/:workspaceId/project", sprintRouter);
 
 export default projectRouter;
