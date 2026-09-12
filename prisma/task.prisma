@@ -1,8 +1,17 @@
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  REVIEW
+  DONE
+}
+
+
 model Task {
   id          Int      @id @default(autoincrement())
   sprint_id   Int
   title       String   @db.VarChar(255)
   description String?  @db.VarChar(1000)
+  task_status TaskStatus @default(TODO)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

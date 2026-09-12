@@ -8,7 +8,7 @@ export const CreateProjectSchema = z.object({
   description: z
     .string()
     .min(1, { message: "Project description cannot be empty" })
-    .max(100, { message: "Description must be smaller than 250 charecters" }),
+    .max(999, { message: "Description must be smaller than 1000 charecters" }),
 });
 
 export const UpdateProjectSchema = z.object({
