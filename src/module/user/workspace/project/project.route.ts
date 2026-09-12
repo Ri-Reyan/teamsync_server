@@ -1,13 +1,33 @@
 import express from "express";
+import verifyUser from "../../../../middleware/verifyUser.js";
+import { PlatformRole } from "../../../../generated/prisma/enums.js";
+import { projectController } from "./project.controller.js";
 
 const projectRouter = express.Router();
 
-projectRouter.get("/:workspaceId/project", () => {});
+projectRouter.get(
+  "/:workspaceId/project",
+  verifyUser(PlatformRole.USER),
+  projectController.getProject,
+);
 
-projectRouter.post("/:workspaceId/project", () => {});
+projectRouter.post(
+  "/:workspaceId/project",
+  verifyUser(PlatformRole.USER),
+  projectController.createProject,
+);
 
-projectRouter.put("/:workspaceId/project", () => {});
+projectRouter.patch(
+  "/:workspaceId/project/:projectId",
+  verifyUser(PlatformRole.USER),
+  projectController.updateProject,
+);
 
-projectRouter.delete("/:workspaceId/project", () => {});
+// Delete Project
+projectRouter.delete(
+  "/:workspaceId/project/:projectId",
+  verifyUser(PlatformRole.USER),
+  projectController.deleteProject,
+);
 
 export default projectRouter;

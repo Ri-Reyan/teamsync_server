@@ -3,10 +3,15 @@ import z from "zod";
 export const CreateProjectSchema = z.object({
   name: z
     .string()
-    .min(3, { message: "Name must be at least 3 charecters" })
+    .min(1, { message: "Project name cannot be empty" })
     .max(100, { message: "Name must be smaller than 100 charecters" }),
   description: z
     .string()
-    .min(5, { message: "Description must be at least 5 charecters" })
+    .min(1, { message: "Project description cannot be empty" })
     .max(100, { message: "Description must be smaller than 250 charecters" }),
+});
+
+export const UpdateProjectSchema = z.object({
+  name: z.string().min(1, "Project name cannot be empty").optional(),
+  description: z.string().optional(),
 });
