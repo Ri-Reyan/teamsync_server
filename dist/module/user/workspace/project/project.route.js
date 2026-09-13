@@ -10,5 +10,5 @@ projectRouter.patch("/:workspaceId/project/:projectId", verifyUser(PlatformRole.
 // Delete Project
 projectRouter.delete("/:workspaceId/project/:projectId", verifyUser(PlatformRole.USER), projectController.deleteProject);
 // sprint mount
-projectRouter.use(sprintRouter);
+projectRouter.use("/:workspaceId/project", sprintRouter);
 export default projectRouter;
