@@ -8,6 +8,7 @@ import "./lib/passport.js";
 import passport from "passport";
 import worksapceRouter from "./module/user/workspace/worksapce.route.js";
 import cookieParser from "cookie-parser";
+import paymentRouter from "./module/user/payment/payment.route.js";
 const app = express();
 app.use(cors({
     origin: credentials.client_url,
@@ -26,5 +27,6 @@ app.get("/", (req, res) => {
 });
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user/workspace", worksapceRouter);
+app.use("/api/v1/user/payment", paymentRouter);
 app.use(globalErrorHandler);
 export default app;

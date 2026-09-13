@@ -17,5 +17,6 @@ authRouter.get("/google/callback", passport.authenticate("google", {
 authRouter.post("/login", login);
 authRouter.post("/forgot-password", forgotPassword);
 authRouter.post("/reset-password", resetPassword);
+authRouter.post("/logout", authControllers.logout);
 authRouter.get("/me", verifyUser(PlatformRole.USER, PlatformRole.ADMIN), getMe);
 export default authRouter;

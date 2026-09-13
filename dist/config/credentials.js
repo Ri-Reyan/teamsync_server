@@ -19,4 +19,5 @@ export const credentials = {
         .JWT_REFRESH_TOKEN_EXPIRES,
     jwt_access_token_expires: process.env
         .JWT_ACCESS_TOKEN_EXPIRES,
+    stripe_secret_key: process.env.STRIPE_SECRET_KEY,
 };

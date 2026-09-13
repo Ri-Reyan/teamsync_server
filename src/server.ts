@@ -21,7 +21,6 @@ const main = async () => {
     // ১. স্প্রিন্ট রুমে জয়েন করা
     socket.on("join_sprint_room", (sprintId) => {
       socket.join(`sprint_${sprintId}`);
-      console.log(`Socket ${socket.id} joined sprint_${sprintId}`);
     });
 
     // ২. স্প্রিন্ট রুম থেকে লিভ নেওয়া

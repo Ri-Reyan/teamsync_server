@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Invitation: 'Invitation',
   Member: 'Member',
+  Payment: 'Payment',
   Project: 'Project',
   Sprint: 'Sprint',
   Task: 'Task',
@@ -101,6 +102,22 @@ export const MemberScalarFieldEnum = {
 } as const
 
 export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof MemberScalarFieldEnum]
+
+
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  method: 'method',
+  transection_id: 'transection_id',
+  amount: 'amount',
+  payment_status: 'payment_status',
+  package: 'package',
+  paidAt: 'paidAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
 
 
 export const ProjectScalarFieldEnum = {

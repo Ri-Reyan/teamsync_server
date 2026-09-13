@@ -52,6 +52,11 @@ export type Invitation = Prisma.InvitationModel
  */
 export type Member = Prisma.MemberModel
 /**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
+/**
  * Model Project
  * 
  */

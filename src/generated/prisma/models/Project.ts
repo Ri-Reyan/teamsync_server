@@ -445,14 +445,6 @@ export type ProjectOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type ProjectCreateNestedOneWithoutSprintsInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutSprintsInput, Prisma.ProjectUncheckedCreateWithoutSprintsInput>
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutSprintsInput

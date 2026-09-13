@@ -10,6 +10,7 @@
  */
 export type * from './models/Invitation.js'
 export type * from './models/Member.js'
+export type * from './models/Payment.js'
 export type * from './models/Project.js'
 export type * from './models/Sprint.js'
 export type * from './models/Task.js'

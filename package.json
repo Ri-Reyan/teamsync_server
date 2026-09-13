@@ -137,7 +137,7 @@
     "split2": "^4.2.0",
     "sqlstring": "^2.3.3",
     "std-env": "^3.10.0",
-    "stripe": "^22.6.1",
+    "stripe": "^22.6.2",
     "undici-types": "^8.3.0",
     "valibot": "^1.4.2",
     "which": "^2.0.2",

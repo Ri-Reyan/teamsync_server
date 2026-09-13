@@ -35,6 +35,7 @@ authRouter.get(
 authRouter.post("/login", login);
 authRouter.post("/forgot-password", forgotPassword);
 authRouter.post("/reset-password", resetPassword);
+authRouter.post("/logout", authControllers.logout);
 
 authRouter.get("/me", verifyUser(PlatformRole.USER, PlatformRole.ADMIN), getMe);
 

@@ -22,6 +22,15 @@ export const WorkspaceRole = {
     MEMBER: 'MEMBER',
     OWNER: 'OWNER'
 };
+export const PaymentMethod = {
+    STRIPE: 'STRIPE'
+};
+export const PaymentStatus = {
+    PENDING: 'PENDING',
+    PAID: 'PAID',
+    FAILED: 'FAILED',
+    CANCELED: 'CANCELED'
+};
 export const TaskStatus = {
     TODO: 'TODO',
     IN_PROGRESS: 'IN_PROGRESS',

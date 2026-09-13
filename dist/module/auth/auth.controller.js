@@ -217,9 +217,19 @@ export const getMe = async (req, res) => {
         data: user,
     });
 };
+const logout = catchAsync(async (req, res) => {
+    res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
+    sendResponse(res, {
+        success: true,
+        statusCode: 200,
+        message: "User logout successfully",
+    });
+});
 export const authControllers = {
     register,
     verifyRegistrationEmail,
     googleCallback,
     getMe,
+    logout,
 };
