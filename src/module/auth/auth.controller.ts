@@ -55,6 +55,7 @@ const verifyRegistrationEmail = catchAsync(
       email: user.email,
       platformRole: user.platformRole,
       isPremium: user.isPremium,
+      package: user.package,
     };
 
     const accessToken = generateToken(
@@ -106,6 +107,7 @@ export const googleCallback = catchAsync(
       email: user.email,
       platformRole: user.platformRole,
       isPremium: user.isPremium,
+      package: user.package,
     };
 
     const accessToken = generateToken(
@@ -153,6 +155,7 @@ export const login = catchAsync(async (req: Request, res: Response) => {
     email: user.email,
     platformRole: user.platformRole,
     isPremium: user.isPremium,
+    package: user.package,
   };
 
   const accessToken = generateToken(

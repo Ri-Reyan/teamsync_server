@@ -4,7 +4,7 @@ import catchAsync from "../global/catchAsync.js";
 import { generateToken, sendCookie, verifyToken } from "../utils/token.js";
 import AppError from "../global/AppError.js";
 import { prisma } from "../lib/prisma.js";
-import { PlatformRole } from "../generated/prisma/enums.js";
+import { Package, PlatformRole } from "../generated/prisma/enums.js";
 import { credentials } from "../config/credentials.js";
 
 export type TokenPayload = JwtPayload & {
@@ -13,7 +13,7 @@ export type TokenPayload = JwtPayload & {
   email: string;
   platformRole: PlatformRole;
   isPremium: boolean;
-  package: string;
+  package: Package;
 };
 
 const verifyUser = (...allowedRoles: PlatformRole[]) =>

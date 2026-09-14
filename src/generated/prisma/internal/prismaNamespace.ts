@@ -402,6 +402,7 @@ export const ModelName = {
   Payment: 'Payment',
   Project: 'Project',
   Sprint: 'Sprint',
+  Summary: 'Summary',
   Task: 'Task',
   User: 'User',
   Workspace: 'Workspace'
@@ -420,7 +421,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "invitation" | "member" | "payment" | "project" | "sprint" | "task" | "user" | "workspace"
+    modelProps: "invitation" | "member" | "payment" | "project" | "sprint" | "summary" | "task" | "user" | "workspace"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -794,6 +795,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Summary: {
+      payload: Prisma.$SummaryPayload<ExtArgs>
+      fields: Prisma.SummaryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SummaryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SummaryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SummaryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SummaryPayload>
+        }
+        findFirst: {
+          args: Prisma.SummaryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SummaryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SummaryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SummaryPayload>
+        }
+        findMany: {
+          args: Prisma.SummaryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SummaryPayload>[]
+        }
+        create: {
+          args: Prisma.SummaryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SummaryPayload>
+        }
+        createMany: {
+          args: Prisma.SummaryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SummaryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SummaryPayload>[]
+        }
+        delete: {
+          args: Prisma.SummaryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SummaryPayload>
+        }
+        update: {
+          args: Prisma.SummaryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SummaryPayload>
+        }
+        deleteMany: {
+          args: Prisma.SummaryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SummaryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SummaryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SummaryPayload>[]
+        }
+        upsert: {
+          args: Prisma.SummaryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SummaryPayload>
+        }
+        aggregate: {
+          args: Prisma.SummaryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSummary>
+        }
+        groupBy: {
+          args: Prisma.SummaryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SummaryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SummaryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SummaryCountAggregateOutputType> | number
+        }
+      }
+    }
     Task: {
       payload: Prisma.$TaskPayload<ExtArgs>
       fields: Prisma.TaskFieldRefs
@@ -1125,6 +1200,19 @@ export const SprintScalarFieldEnum = {
 } as const
 
 export type SprintScalarFieldEnum = (typeof SprintScalarFieldEnum)[keyof typeof SprintScalarFieldEnum]
+
+
+export const SummaryScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  workspace_id: 'workspace_id',
+  topic: 'topic',
+  result: 'result',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SummaryScalarFieldEnum = (typeof SummaryScalarFieldEnum)[keyof typeof SummaryScalarFieldEnum]
 
 
 export const TaskScalarFieldEnum = {
@@ -1557,6 +1645,7 @@ export type GlobalOmitConfig = {
   payment?: Prisma.PaymentOmit
   project?: Prisma.ProjectOmit
   sprint?: Prisma.SprintOmit
+  summary?: Prisma.SummaryOmit
   task?: Prisma.TaskOmit
   user?: Prisma.UserOmit
   workspace?: Prisma.WorkspaceOmit

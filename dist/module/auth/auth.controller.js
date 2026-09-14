@@ -39,6 +39,7 @@ const verifyRegistrationEmail = catchAsync(async (req, res) => {
         email: user.email,
         platformRole: user.platformRole,
         isPremium: user.isPremium,
+        package: user.package,
     };
     const accessToken = generateToken(credentials.jwt_access_token_secret, jwtPayload, credentials.jwt_access_token_expires);
     const refreshToken = generateToken(credentials.jwt_refresh_token_secret, jwtPayload, credentials.jwt_refresh_token_expires);
@@ -69,6 +70,7 @@ export const googleCallback = catchAsync(async (req, res) => {
         email: user.email,
         platformRole: user.platformRole,
         isPremium: user.isPremium,
+        package: user.package,
     };
     const accessToken = generateToken(credentials.jwt_access_token_secret, jwtPayload, credentials.jwt_access_token_expires);
     const refreshToken = generateToken(credentials.jwt_refresh_token_secret, jwtPayload, credentials.jwt_refresh_token_expires);
@@ -96,6 +98,7 @@ export const login = catchAsync(async (req, res) => {
         email: user.email,
         platformRole: user.platformRole,
         isPremium: user.isPremium,
+        package: user.package,
     };
     const accessToken = generateToken(credentials.jwt_access_token_secret, jwtPayload, credentials.jwt_access_token_expires);
     const refreshToken = generateToken(credentials.jwt_refresh_token_secret, jwtPayload, credentials.jwt_refresh_token_expires);

@@ -56,6 +56,7 @@ export const ModelName = {
   Payment: 'Payment',
   Project: 'Project',
   Sprint: 'Sprint',
+  Summary: 'Summary',
   Task: 'Task',
   User: 'User',
   Workspace: 'Workspace'
@@ -147,6 +148,19 @@ export const SprintScalarFieldEnum = {
 } as const
 
 export type SprintScalarFieldEnum = (typeof SprintScalarFieldEnum)[keyof typeof SprintScalarFieldEnum]
+
+
+export const SummaryScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  workspace_id: 'workspace_id',
+  topic: 'topic',
+  result: 'result',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SummaryScalarFieldEnum = (typeof SummaryScalarFieldEnum)[keyof typeof SummaryScalarFieldEnum]
 
 
 export const TaskScalarFieldEnum = {

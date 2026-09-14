@@ -43,6 +43,11 @@ export type Project = Prisma.ProjectModel
  */
 export type Sprint = Prisma.SprintModel
 /**
+ * Model Summary
+ * 
+ */
+export type Summary = Prisma.SummaryModel
+/**
  * Model Task
  * 
  */
