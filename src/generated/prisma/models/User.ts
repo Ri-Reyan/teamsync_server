@@ -234,6 +234,7 @@ export type UserWhereInput = {
   members?: Prisma.MemberListRelationFilter
   invitations?: Prisma.InvitationListRelationFilter
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
+  summary?: Prisma.SummaryListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -252,6 +253,7 @@ export type UserOrderByWithRelationInput = {
   members?: Prisma.MemberOrderByRelationAggregateInput
   invitations?: Prisma.InvitationOrderByRelationAggregateInput
   payment?: Prisma.PaymentOrderByWithRelationInput
+  summary?: Prisma.SummaryOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -273,6 +275,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   members?: Prisma.MemberListRelationFilter
   invitations?: Prisma.InvitationListRelationFilter
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
+  summary?: Prisma.SummaryListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -325,6 +328,7 @@ export type UserCreateInput = {
   members?: Prisma.MemberCreateNestedManyWithoutUserInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentCreateNestedOneWithoutUserInput
+  summary?: Prisma.SummaryCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -343,6 +347,7 @@ export type UserUncheckedCreateInput = {
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutUserInput
+  summary?: Prisma.SummaryUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUpdateInput = {
@@ -361,6 +366,7 @@ export type UserUpdateInput = {
   members?: Prisma.MemberUpdateManyWithoutUserNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutUserNestedInput
+  summary?: Prisma.SummaryUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -379,6 +385,7 @@ export type UserUncheckedUpdateInput = {
   members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutUserNestedInput
+  summary?: Prisma.SummaryUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -512,6 +519,20 @@ export type UserUpdateOneRequiredWithoutPaymentNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPaymentInput, Prisma.UserUpdateWithoutPaymentInput>, Prisma.UserUncheckedUpdateWithoutPaymentInput>
 }
 
+export type UserCreateNestedOneWithoutSummaryInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSummaryInput, Prisma.UserUncheckedCreateWithoutSummaryInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSummaryInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSummaryNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSummaryInput, Prisma.UserUncheckedCreateWithoutSummaryInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSummaryInput
+  upsert?: Prisma.UserUpsertWithoutSummaryInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSummaryInput, Prisma.UserUpdateWithoutSummaryInput>, Prisma.UserUncheckedUpdateWithoutSummaryInput>
+}
+
 export type EnumPlatformRoleFieldUpdateOperationsInput = {
   set?: $Enums.PlatformRole
 }
@@ -557,6 +578,7 @@ export type UserCreateWithoutInvitationsInput = {
   workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
   members?: Prisma.MemberCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentCreateNestedOneWithoutUserInput
+  summary?: Prisma.SummaryCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutInvitationsInput = {
@@ -574,6 +596,7 @@ export type UserUncheckedCreateWithoutInvitationsInput = {
   workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutUserInput
+  summary?: Prisma.SummaryUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutInvitationsInput = {
@@ -607,6 +630,7 @@ export type UserUpdateWithoutInvitationsInput = {
   workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
   members?: Prisma.MemberUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutUserNestedInput
+  summary?: Prisma.SummaryUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInvitationsInput = {
@@ -624,6 +648,7 @@ export type UserUncheckedUpdateWithoutInvitationsInput = {
   workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutUserNestedInput
+  summary?: Prisma.SummaryUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateWithoutMembersInput = {
@@ -641,6 +666,7 @@ export type UserCreateWithoutMembersInput = {
   workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentCreateNestedOneWithoutUserInput
+  summary?: Prisma.SummaryCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutMembersInput = {
@@ -658,6 +684,7 @@ export type UserUncheckedCreateWithoutMembersInput = {
   workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutUserInput
+  summary?: Prisma.SummaryUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutMembersInput = {
@@ -691,6 +718,7 @@ export type UserUpdateWithoutMembersInput = {
   workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutUserNestedInput
+  summary?: Prisma.SummaryUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembersInput = {
@@ -708,6 +736,7 @@ export type UserUncheckedUpdateWithoutMembersInput = {
   workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutUserNestedInput
+  summary?: Prisma.SummaryUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateWithoutPaymentInput = {
@@ -725,6 +754,7 @@ export type UserCreateWithoutPaymentInput = {
   workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
   members?: Prisma.MemberCreateNestedManyWithoutUserInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
+  summary?: Prisma.SummaryCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutPaymentInput = {
@@ -742,6 +772,7 @@ export type UserUncheckedCreateWithoutPaymentInput = {
   workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
+  summary?: Prisma.SummaryUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutPaymentInput = {
@@ -775,6 +806,7 @@ export type UserUpdateWithoutPaymentInput = {
   workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
   members?: Prisma.MemberUpdateManyWithoutUserNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
+  summary?: Prisma.SummaryUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPaymentInput = {
@@ -792,6 +824,95 @@ export type UserUncheckedUpdateWithoutPaymentInput = {
   workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
   members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
+  summary?: Prisma.SummaryUncheckedUpdateManyWithoutOwnerNestedInput
+}
+
+export type UserCreateWithoutSummaryInput = {
+  id?: string
+  username: string
+  email: string
+  password?: string | null
+  platformRole?: $Enums.PlatformRole
+  isPremium?: boolean
+  package?: $Enums.Package
+  signUpMethod?: $Enums.SignUpMethod
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
+  members?: Prisma.MemberCreateNestedManyWithoutUserInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSummaryInput = {
+  id?: string
+  username: string
+  email: string
+  password?: string | null
+  platformRole?: $Enums.PlatformRole
+  isPremium?: boolean
+  package?: $Enums.Package
+  signUpMethod?: $Enums.SignUpMethod
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
+  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSummaryInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSummaryInput, Prisma.UserUncheckedCreateWithoutSummaryInput>
+}
+
+export type UserUpsertWithoutSummaryInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSummaryInput, Prisma.UserUncheckedUpdateWithoutSummaryInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSummaryInput, Prisma.UserUncheckedCreateWithoutSummaryInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSummaryInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSummaryInput, Prisma.UserUncheckedUpdateWithoutSummaryInput>
+}
+
+export type UserUpdateWithoutSummaryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
+  signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
+  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSummaryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
+  isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
+  signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
+  payment?: Prisma.PaymentUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWorkspacesInput = {
@@ -809,6 +930,7 @@ export type UserCreateWithoutWorkspacesInput = {
   members?: Prisma.MemberCreateNestedManyWithoutUserInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentCreateNestedOneWithoutUserInput
+  summary?: Prisma.SummaryCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutWorkspacesInput = {
@@ -826,6 +948,7 @@ export type UserUncheckedCreateWithoutWorkspacesInput = {
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutUserInput
+  summary?: Prisma.SummaryUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutWorkspacesInput = {
@@ -859,6 +982,7 @@ export type UserUpdateWithoutWorkspacesInput = {
   members?: Prisma.MemberUpdateManyWithoutUserNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutUserNestedInput
+  summary?: Prisma.SummaryUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkspacesInput = {
@@ -876,6 +1000,7 @@ export type UserUncheckedUpdateWithoutWorkspacesInput = {
   members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutUserNestedInput
+  summary?: Prisma.SummaryUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 
@@ -887,12 +1012,14 @@ export type UserCountOutputType = {
   workspaces: number
   members: number
   invitations: number
+  summary: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workspaces?: boolean | UserCountOutputTypeCountWorkspacesArgs
   members?: boolean | UserCountOutputTypeCountMembersArgs
   invitations?: boolean | UserCountOutputTypeCountInvitationsArgs
+  summary?: boolean | UserCountOutputTypeCountSummaryArgs
 }
 
 /**
@@ -926,6 +1053,13 @@ export type UserCountOutputTypeCountInvitationsArgs<ExtArgs extends runtime.Type
   where?: Prisma.InvitationWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSummaryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SummaryWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -943,6 +1077,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   members?: boolean | Prisma.User$membersArgs<ExtArgs>
   invitations?: boolean | Prisma.User$invitationsArgs<ExtArgs>
   payment?: boolean | Prisma.User$paymentArgs<ExtArgs>
+  summary?: boolean | Prisma.User$summaryArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -994,6 +1129,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   members?: boolean | Prisma.User$membersArgs<ExtArgs>
   invitations?: boolean | Prisma.User$invitationsArgs<ExtArgs>
   payment?: boolean | Prisma.User$paymentArgs<ExtArgs>
+  summary?: boolean | Prisma.User$summaryArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1006,6 +1142,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     members: Prisma.$MemberPayload<ExtArgs>[]
     invitations: Prisma.$InvitationPayload<ExtArgs>[]
     payment: Prisma.$PaymentPayload<ExtArgs> | null
+    summary: Prisma.$SummaryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1417,6 +1554,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   members<T extends Prisma.User$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invitations<T extends Prisma.User$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payment<T extends Prisma.User$paymentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  summary<T extends Prisma.User$summaryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$summaryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SummaryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1938,6 +2076,30 @@ export type User$paymentArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   include?: Prisma.PaymentInclude<ExtArgs> | null
   where?: Prisma.PaymentWhereInput
+}
+
+/**
+ * User.summary
+ */
+export type User$summaryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Summary
+   */
+  select?: Prisma.SummarySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Summary
+   */
+  omit?: Prisma.SummaryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryInclude<ExtArgs> | null
+  where?: Prisma.SummaryWhereInput
+  orderBy?: Prisma.SummaryOrderByWithRelationInput | Prisma.SummaryOrderByWithRelationInput[]
+  cursor?: Prisma.SummaryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SummaryScalarFieldEnum | Prisma.SummaryScalarFieldEnum[]
 }
 
 /**

@@ -1,5 +1,6 @@
 import { genAI } from "../../../../../lib/genAI.js";
 import {
+  AIRequestType,
   GenPreviouConversationSummary,
   GetConversationType,
   PreviousConversationType,
@@ -8,8 +9,9 @@ import {
 import AppError from "../../../../../global/AppError.js";
 import { prisma } from "../../../../../lib/prisma.js";
 
-export async function genProjectSummary(
+export async function genAIChatService(
   tasks: TaskType[],
+  projectName: string,
   projectDescription: string,
   previousConversation?: PreviousConversationType[],
   userMessage?: string,
@@ -106,6 +108,9 @@ ${
 
 7. CURRENT PROJECT CONTEXT
 Use the following project information when answering project-related questions.
+
+Project Name:
+${projectName || "Unnamed project"}
 
 Tasks:
 ${
@@ -239,11 +244,134 @@ const getConversationService = async (payload: GetConversationType) => {
     throw new AppError("member not found", 400);
   }
 
-  const conversation = await prisma;
+  const conversations = await prisma.summary.findMany({
+    where: {
+      owner_id: isWorkspaceExits.owner_id,
+      project_id: payload.projectId,
+      workspace_id: payload.workspaceId,
+    },
+  });
+
+  if (conversations.length <= 0) {
+    return null;
+  }
+
+  const conversation = conversations.map((c) => {
+    return {
+      topic: c.topic,
+      result: c.result,
+    };
+  });
+
+  return conversation;
 };
 
+const getProjectContext = async (payload: GetConversationType) => {
+  const member = await prisma.member.findUnique({
+    where: {
+      workspace_id_user_id: {
+        workspace_id: payload.workspaceId,
+        user_id: payload.userId,
+      },
+    },
+  });
+
+  if (!member) {
+    throw new AppError("You are not a member of this workspace", 403);
+  }
+
+  const project = await prisma.project.findFirst({
+    where: {
+      id: payload.projectId,
+      workspace_id: payload.workspaceId,
+    },
+    include: {
+      sprints: {
+        include: {
+          tasks: true,
+        },
+      },
+      workspace: {
+        select: {
+          owner_id: true,
+        },
+      },
+    },
+  });
+
+  if (!project) {
+    throw new AppError("Project not found in this workspace", 404);
+  }
+
+  return project;
+};
+
+const saveConversation = async (
+  payload: AIRequestType,
+  ownerId: string,
+  topic: string,
+  result: string,
+) =>
+  prisma.summary.create({
+    data: {
+      owner_id: ownerId,
+      workspace_id: payload.workspaceId,
+      project_id: payload.projectId,
+      topic,
+      result,
+    },
+  });
+
+const generateProjectAIResponse = async (
+  payload: AIRequestType,
+  summaryOnly: boolean,
+) => {
+  const project = await getProjectContext(payload);
+  const previousConversation = await getConversationService(payload);
+  const tasks = project.sprints.flatMap((sprint) =>
+    sprint.tasks.map((task) => ({
+      status: task.task_status,
+      title: task.title,
+      description: task.description ?? "",
+    })),
+  );
+
+  const userMessage = summaryOnly
+    ? "Generate a concise project summary with completed work, work in progress, and potential blockers or risks."
+    : payload.userMessage?.trim();
+
+  if (!userMessage) {
+    throw new AppError("Prompt is required", 400);
+  }
+
+  const result = await genAIChatService(
+    tasks,
+    project.name,
+    project.description ?? "",
+    previousConversation ?? undefined,
+    userMessage,
+  );
+
+  await saveConversation(
+    payload,
+    project.workspace.owner_id,
+    summaryOnly ? "Project Summary" : userMessage.slice(0, 255),
+    result,
+  );
+
+  return result;
+};
+
+const generateChatResponseService = (payload: AIRequestType) =>
+  generateProjectAIResponse(payload, false);
+
+const generateProjectSummaryService = (payload: GetConversationType) =>
+  generateProjectAIResponse(payload, true);
+
 export const AIService = {
-  genProjectSummary,
+  genAIChatService,
+  generateChatResponseService,
+  generateProjectSummaryService,
   genPreviousConvresationSummary,
   getConversationService,
 };

@@ -26,8 +26,9 @@ export type AggregateSummary = {
 
 export type SummaryMinAggregateOutputType = {
   id: string | null
-  user_id: string | null
+  owner_id: string | null
   workspace_id: string | null
+  project_id: string | null
   topic: string | null
   result: string | null
   createdAt: Date | null
@@ -36,8 +37,9 @@ export type SummaryMinAggregateOutputType = {
 
 export type SummaryMaxAggregateOutputType = {
   id: string | null
-  user_id: string | null
+  owner_id: string | null
   workspace_id: string | null
+  project_id: string | null
   topic: string | null
   result: string | null
   createdAt: Date | null
@@ -46,8 +48,9 @@ export type SummaryMaxAggregateOutputType = {
 
 export type SummaryCountAggregateOutputType = {
   id: number
-  user_id: number
+  owner_id: number
   workspace_id: number
+  project_id: number
   topic: number
   result: number
   createdAt: number
@@ -58,8 +61,9 @@ export type SummaryCountAggregateOutputType = {
 
 export type SummaryMinAggregateInputType = {
   id?: true
-  user_id?: true
+  owner_id?: true
   workspace_id?: true
+  project_id?: true
   topic?: true
   result?: true
   createdAt?: true
@@ -68,8 +72,9 @@ export type SummaryMinAggregateInputType = {
 
 export type SummaryMaxAggregateInputType = {
   id?: true
-  user_id?: true
+  owner_id?: true
   workspace_id?: true
+  project_id?: true
   topic?: true
   result?: true
   createdAt?: true
@@ -78,8 +83,9 @@ export type SummaryMaxAggregateInputType = {
 
 export type SummaryCountAggregateInputType = {
   id?: true
-  user_id?: true
+  owner_id?: true
   workspace_id?: true
+  project_id?: true
   topic?: true
   result?: true
   createdAt?: true
@@ -161,8 +167,9 @@ export type SummaryGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type SummaryGroupByOutputType = {
   id: string
-  user_id: string
+  owner_id: string
   workspace_id: string
+  project_id: string
   topic: string
   result: string
   createdAt: Date
@@ -192,22 +199,26 @@ export type SummaryWhereInput = {
   OR?: Prisma.SummaryWhereInput[]
   NOT?: Prisma.SummaryWhereInput | Prisma.SummaryWhereInput[]
   id?: Prisma.UuidFilter<"Summary"> | string
-  user_id?: Prisma.UuidFilter<"Summary"> | string
+  owner_id?: Prisma.UuidFilter<"Summary"> | string
   workspace_id?: Prisma.UuidFilter<"Summary"> | string
+  project_id?: Prisma.UuidFilter<"Summary"> | string
   topic?: Prisma.StringFilter<"Summary"> | string
   result?: Prisma.StringFilter<"Summary"> | string
   createdAt?: Prisma.DateTimeFilter<"Summary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Summary"> | Date | string
+  owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type SummaryOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  user_id?: Prisma.SortOrder
+  owner_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
+  project_id?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   result?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  owner?: Prisma.UserOrderByWithRelationInput
 }
 
 export type SummaryWhereUniqueInput = Prisma.AtLeast<{
@@ -215,18 +226,21 @@ export type SummaryWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.SummaryWhereInput | Prisma.SummaryWhereInput[]
   OR?: Prisma.SummaryWhereInput[]
   NOT?: Prisma.SummaryWhereInput | Prisma.SummaryWhereInput[]
-  user_id?: Prisma.UuidFilter<"Summary"> | string
+  owner_id?: Prisma.UuidFilter<"Summary"> | string
   workspace_id?: Prisma.UuidFilter<"Summary"> | string
+  project_id?: Prisma.UuidFilter<"Summary"> | string
   topic?: Prisma.StringFilter<"Summary"> | string
   result?: Prisma.StringFilter<"Summary"> | string
   createdAt?: Prisma.DateTimeFilter<"Summary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Summary"> | Date | string
+  owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type SummaryOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  user_id?: Prisma.SortOrder
+  owner_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
+  project_id?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   result?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -241,8 +255,9 @@ export type SummaryScalarWhereWithAggregatesInput = {
   OR?: Prisma.SummaryScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SummaryScalarWhereWithAggregatesInput | Prisma.SummaryScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Summary"> | string
-  user_id?: Prisma.UuidWithAggregatesFilter<"Summary"> | string
+  owner_id?: Prisma.UuidWithAggregatesFilter<"Summary"> | string
   workspace_id?: Prisma.UuidWithAggregatesFilter<"Summary"> | string
+  project_id?: Prisma.UuidWithAggregatesFilter<"Summary"> | string
   topic?: Prisma.StringWithAggregatesFilter<"Summary"> | string
   result?: Prisma.StringWithAggregatesFilter<"Summary"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Summary"> | Date | string
@@ -251,18 +266,20 @@ export type SummaryScalarWhereWithAggregatesInput = {
 
 export type SummaryCreateInput = {
   id?: string
-  user_id: string
   workspace_id: string
+  project_id: string
   topic: string
   result: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutSummaryInput
 }
 
 export type SummaryUncheckedCreateInput = {
   id?: string
-  user_id: string
+  owner_id: string
   workspace_id: string
+  project_id: string
   topic: string
   result: string
   createdAt?: Date | string
@@ -271,18 +288,20 @@ export type SummaryUncheckedCreateInput = {
 
 export type SummaryUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   result?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutSummaryNestedInput
 }
 
 export type SummaryUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   result?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -291,8 +310,9 @@ export type SummaryUncheckedUpdateInput = {
 
 export type SummaryCreateManyInput = {
   id?: string
-  user_id: string
+  owner_id: string
   workspace_id: string
+  project_id: string
   topic: string
   result: string
   createdAt?: Date | string
@@ -301,8 +321,8 @@ export type SummaryCreateManyInput = {
 
 export type SummaryUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   result?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -311,8 +331,9 @@ export type SummaryUpdateManyMutationInput = {
 
 export type SummaryUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   result?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -321,8 +342,9 @@ export type SummaryUncheckedUpdateManyInput = {
 
 export type SummaryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  user_id?: Prisma.SortOrder
+  owner_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
+  project_id?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   result?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -331,8 +353,9 @@ export type SummaryCountOrderByAggregateInput = {
 
 export type SummaryMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  user_id?: Prisma.SortOrder
+  owner_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
+  project_id?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   result?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -341,65 +364,237 @@ export type SummaryMaxOrderByAggregateInput = {
 
 export type SummaryMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  user_id?: Prisma.SortOrder
+  owner_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
+  project_id?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   result?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
+export type SummaryListRelationFilter = {
+  every?: Prisma.SummaryWhereInput
+  some?: Prisma.SummaryWhereInput
+  none?: Prisma.SummaryWhereInput
+}
+
+export type SummaryOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type SummaryCreateNestedManyWithoutOwnerInput = {
+  create?: Prisma.XOR<Prisma.SummaryCreateWithoutOwnerInput, Prisma.SummaryUncheckedCreateWithoutOwnerInput> | Prisma.SummaryCreateWithoutOwnerInput[] | Prisma.SummaryUncheckedCreateWithoutOwnerInput[]
+  connectOrCreate?: Prisma.SummaryCreateOrConnectWithoutOwnerInput | Prisma.SummaryCreateOrConnectWithoutOwnerInput[]
+  createMany?: Prisma.SummaryCreateManyOwnerInputEnvelope
+  connect?: Prisma.SummaryWhereUniqueInput | Prisma.SummaryWhereUniqueInput[]
+}
+
+export type SummaryUncheckedCreateNestedManyWithoutOwnerInput = {
+  create?: Prisma.XOR<Prisma.SummaryCreateWithoutOwnerInput, Prisma.SummaryUncheckedCreateWithoutOwnerInput> | Prisma.SummaryCreateWithoutOwnerInput[] | Prisma.SummaryUncheckedCreateWithoutOwnerInput[]
+  connectOrCreate?: Prisma.SummaryCreateOrConnectWithoutOwnerInput | Prisma.SummaryCreateOrConnectWithoutOwnerInput[]
+  createMany?: Prisma.SummaryCreateManyOwnerInputEnvelope
+  connect?: Prisma.SummaryWhereUniqueInput | Prisma.SummaryWhereUniqueInput[]
+}
+
+export type SummaryUpdateManyWithoutOwnerNestedInput = {
+  create?: Prisma.XOR<Prisma.SummaryCreateWithoutOwnerInput, Prisma.SummaryUncheckedCreateWithoutOwnerInput> | Prisma.SummaryCreateWithoutOwnerInput[] | Prisma.SummaryUncheckedCreateWithoutOwnerInput[]
+  connectOrCreate?: Prisma.SummaryCreateOrConnectWithoutOwnerInput | Prisma.SummaryCreateOrConnectWithoutOwnerInput[]
+  upsert?: Prisma.SummaryUpsertWithWhereUniqueWithoutOwnerInput | Prisma.SummaryUpsertWithWhereUniqueWithoutOwnerInput[]
+  createMany?: Prisma.SummaryCreateManyOwnerInputEnvelope
+  set?: Prisma.SummaryWhereUniqueInput | Prisma.SummaryWhereUniqueInput[]
+  disconnect?: Prisma.SummaryWhereUniqueInput | Prisma.SummaryWhereUniqueInput[]
+  delete?: Prisma.SummaryWhereUniqueInput | Prisma.SummaryWhereUniqueInput[]
+  connect?: Prisma.SummaryWhereUniqueInput | Prisma.SummaryWhereUniqueInput[]
+  update?: Prisma.SummaryUpdateWithWhereUniqueWithoutOwnerInput | Prisma.SummaryUpdateWithWhereUniqueWithoutOwnerInput[]
+  updateMany?: Prisma.SummaryUpdateManyWithWhereWithoutOwnerInput | Prisma.SummaryUpdateManyWithWhereWithoutOwnerInput[]
+  deleteMany?: Prisma.SummaryScalarWhereInput | Prisma.SummaryScalarWhereInput[]
+}
+
+export type SummaryUncheckedUpdateManyWithoutOwnerNestedInput = {
+  create?: Prisma.XOR<Prisma.SummaryCreateWithoutOwnerInput, Prisma.SummaryUncheckedCreateWithoutOwnerInput> | Prisma.SummaryCreateWithoutOwnerInput[] | Prisma.SummaryUncheckedCreateWithoutOwnerInput[]
+  connectOrCreate?: Prisma.SummaryCreateOrConnectWithoutOwnerInput | Prisma.SummaryCreateOrConnectWithoutOwnerInput[]
+  upsert?: Prisma.SummaryUpsertWithWhereUniqueWithoutOwnerInput | Prisma.SummaryUpsertWithWhereUniqueWithoutOwnerInput[]
+  createMany?: Prisma.SummaryCreateManyOwnerInputEnvelope
+  set?: Prisma.SummaryWhereUniqueInput | Prisma.SummaryWhereUniqueInput[]
+  disconnect?: Prisma.SummaryWhereUniqueInput | Prisma.SummaryWhereUniqueInput[]
+  delete?: Prisma.SummaryWhereUniqueInput | Prisma.SummaryWhereUniqueInput[]
+  connect?: Prisma.SummaryWhereUniqueInput | Prisma.SummaryWhereUniqueInput[]
+  update?: Prisma.SummaryUpdateWithWhereUniqueWithoutOwnerInput | Prisma.SummaryUpdateWithWhereUniqueWithoutOwnerInput[]
+  updateMany?: Prisma.SummaryUpdateManyWithWhereWithoutOwnerInput | Prisma.SummaryUpdateManyWithWhereWithoutOwnerInput[]
+  deleteMany?: Prisma.SummaryScalarWhereInput | Prisma.SummaryScalarWhereInput[]
+}
+
+export type SummaryCreateWithoutOwnerInput = {
+  id?: string
+  workspace_id: string
+  project_id: string
+  topic: string
+  result: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SummaryUncheckedCreateWithoutOwnerInput = {
+  id?: string
+  workspace_id: string
+  project_id: string
+  topic: string
+  result: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SummaryCreateOrConnectWithoutOwnerInput = {
+  where: Prisma.SummaryWhereUniqueInput
+  create: Prisma.XOR<Prisma.SummaryCreateWithoutOwnerInput, Prisma.SummaryUncheckedCreateWithoutOwnerInput>
+}
+
+export type SummaryCreateManyOwnerInputEnvelope = {
+  data: Prisma.SummaryCreateManyOwnerInput | Prisma.SummaryCreateManyOwnerInput[]
+  skipDuplicates?: boolean
+}
+
+export type SummaryUpsertWithWhereUniqueWithoutOwnerInput = {
+  where: Prisma.SummaryWhereUniqueInput
+  update: Prisma.XOR<Prisma.SummaryUpdateWithoutOwnerInput, Prisma.SummaryUncheckedUpdateWithoutOwnerInput>
+  create: Prisma.XOR<Prisma.SummaryCreateWithoutOwnerInput, Prisma.SummaryUncheckedCreateWithoutOwnerInput>
+}
+
+export type SummaryUpdateWithWhereUniqueWithoutOwnerInput = {
+  where: Prisma.SummaryWhereUniqueInput
+  data: Prisma.XOR<Prisma.SummaryUpdateWithoutOwnerInput, Prisma.SummaryUncheckedUpdateWithoutOwnerInput>
+}
+
+export type SummaryUpdateManyWithWhereWithoutOwnerInput = {
+  where: Prisma.SummaryScalarWhereInput
+  data: Prisma.XOR<Prisma.SummaryUpdateManyMutationInput, Prisma.SummaryUncheckedUpdateManyWithoutOwnerInput>
+}
+
+export type SummaryScalarWhereInput = {
+  AND?: Prisma.SummaryScalarWhereInput | Prisma.SummaryScalarWhereInput[]
+  OR?: Prisma.SummaryScalarWhereInput[]
+  NOT?: Prisma.SummaryScalarWhereInput | Prisma.SummaryScalarWhereInput[]
+  id?: Prisma.UuidFilter<"Summary"> | string
+  owner_id?: Prisma.UuidFilter<"Summary"> | string
+  workspace_id?: Prisma.UuidFilter<"Summary"> | string
+  project_id?: Prisma.UuidFilter<"Summary"> | string
+  topic?: Prisma.StringFilter<"Summary"> | string
+  result?: Prisma.StringFilter<"Summary"> | string
+  createdAt?: Prisma.DateTimeFilter<"Summary"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Summary"> | Date | string
+}
+
+export type SummaryCreateManyOwnerInput = {
+  id?: string
+  workspace_id: string
+  project_id: string
+  topic: string
+  result: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SummaryUpdateWithoutOwnerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
+  topic?: Prisma.StringFieldUpdateOperationsInput | string
+  result?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SummaryUncheckedUpdateWithoutOwnerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
+  topic?: Prisma.StringFieldUpdateOperationsInput | string
+  result?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SummaryUncheckedUpdateManyWithoutOwnerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
+  topic?: Prisma.StringFieldUpdateOperationsInput | string
+  result?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 
 
 export type SummarySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  user_id?: boolean
+  owner_id?: boolean
   workspace_id?: boolean
+  project_id?: boolean
   topic?: boolean
   result?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["summary"]>
 
 export type SummarySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  user_id?: boolean
+  owner_id?: boolean
   workspace_id?: boolean
+  project_id?: boolean
   topic?: boolean
   result?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["summary"]>
 
 export type SummarySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  user_id?: boolean
+  owner_id?: boolean
   workspace_id?: boolean
+  project_id?: boolean
   topic?: boolean
   result?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["summary"]>
 
 export type SummarySelectScalar = {
   id?: boolean
-  user_id?: boolean
+  owner_id?: boolean
   workspace_id?: boolean
+  project_id?: boolean
   topic?: boolean
   result?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type SummaryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "workspace_id" | "topic" | "result" | "createdAt" | "updatedAt", ExtArgs["result"]["summary"]>
+export type SummaryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "owner_id" | "workspace_id" | "project_id" | "topic" | "result" | "createdAt" | "updatedAt", ExtArgs["result"]["summary"]>
+export type SummaryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type SummaryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type SummaryIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
 
 export type $SummaryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Summary"
-  objects: {}
+  objects: {
+    owner: Prisma.$UserPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    user_id: string
+    owner_id: string
     workspace_id: string
+    project_id: string
     topic: string
     result: string
     createdAt: Date
@@ -798,6 +993,7 @@ readonly fields: SummaryFieldRefs;
  */
 export interface Prisma__SummaryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  owner<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -828,8 +1024,9 @@ export interface Prisma__SummaryClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface SummaryFieldRefs {
   readonly id: Prisma.FieldRef<"Summary", 'String'>
-  readonly user_id: Prisma.FieldRef<"Summary", 'String'>
+  readonly owner_id: Prisma.FieldRef<"Summary", 'String'>
   readonly workspace_id: Prisma.FieldRef<"Summary", 'String'>
+  readonly project_id: Prisma.FieldRef<"Summary", 'String'>
   readonly topic: Prisma.FieldRef<"Summary", 'String'>
   readonly result: Prisma.FieldRef<"Summary", 'String'>
   readonly createdAt: Prisma.FieldRef<"Summary", 'DateTime'>
@@ -851,6 +1048,10 @@ export type SummaryFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   omit?: Prisma.SummaryOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryInclude<ExtArgs> | null
+  /**
    * Filter, which Summary to fetch.
    */
   where: Prisma.SummaryWhereUniqueInput
@@ -869,6 +1070,10 @@ export type SummaryFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.SummaryOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryInclude<ExtArgs> | null
+  /**
    * Filter, which Summary to fetch.
    */
   where: Prisma.SummaryWhereUniqueInput
@@ -886,6 +1091,10 @@ export type SummaryFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Summary
    */
   omit?: Prisma.SummaryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryInclude<ExtArgs> | null
   /**
    * Filter, which Summary to fetch.
    */
@@ -935,6 +1144,10 @@ export type SummaryFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.SummaryOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryInclude<ExtArgs> | null
+  /**
    * Filter, which Summary to fetch.
    */
   where?: Prisma.SummaryWhereInput
@@ -982,6 +1195,10 @@ export type SummaryFindManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Summary
    */
   omit?: Prisma.SummaryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryInclude<ExtArgs> | null
   /**
    * Filter, which Summaries to fetch.
    */
@@ -1031,6 +1248,10 @@ export type SummaryCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   omit?: Prisma.SummaryOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryInclude<ExtArgs> | null
+  /**
    * The data needed to create a Summary.
    */
   data: Prisma.XOR<Prisma.SummaryCreateInput, Prisma.SummaryUncheckedCreateInput>
@@ -1064,6 +1285,10 @@ export type SummaryCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    */
   data: Prisma.SummaryCreateManyInput | Prisma.SummaryCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1078,6 +1303,10 @@ export type SummaryUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Summary
    */
   omit?: Prisma.SummaryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryInclude<ExtArgs> | null
   /**
    * The data needed to update a Summary.
    */
@@ -1130,6 +1359,10 @@ export type SummaryUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * Limit how many Summaries to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1144,6 +1377,10 @@ export type SummaryUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Summary
    */
   omit?: Prisma.SummaryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryInclude<ExtArgs> | null
   /**
    * The filter to search for the Summary to update in case it exists.
    */
@@ -1170,6 +1407,10 @@ export type SummaryDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Summary
    */
   omit?: Prisma.SummaryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryInclude<ExtArgs> | null
   /**
    * Filter which Summary to delete.
    */
@@ -1202,4 +1443,8 @@ export type SummaryDefaultArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Summary
    */
   omit?: Prisma.SummaryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SummaryInclude<ExtArgs> | null
 }

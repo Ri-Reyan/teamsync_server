@@ -16,3 +16,6 @@ export type GetConversationType = {
   projectId: string;
   userId: string;
 };
+export type AIRequestType = GetConversationType & {
+  userMessage?: string;
+};

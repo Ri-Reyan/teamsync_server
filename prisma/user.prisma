@@ -36,6 +36,7 @@ model User {
   members      Member[]
   invitations  Invitation[]
   payment      Payment?
+  summary      Summary[]
 
   @@map("users")
 }

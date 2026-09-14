@@ -1204,8 +1204,9 @@ export type SprintScalarFieldEnum = (typeof SprintScalarFieldEnum)[keyof typeof 
 
 export const SummaryScalarFieldEnum = {
   id: 'id',
-  user_id: 'user_id',
+  owner_id: 'owner_id',
   workspace_id: 'workspace_id',
+  project_id: 'project_id',
   topic: 'topic',
   result: 'result',
   createdAt: 'createdAt',

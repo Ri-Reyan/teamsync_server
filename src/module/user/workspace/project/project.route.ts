@@ -3,6 +3,7 @@ import verifyUser from "../../../../middleware/verifyUser.js";
 import { PlatformRole } from "../../../../generated/prisma/enums.js";
 import { projectController } from "./project.controller.js";
 import sprintRouter from "./sprint/sprint.route.js";
+import aiRouter from "./ai/ai.route.js";
 
 const projectRouter = express.Router();
 
@@ -23,6 +24,8 @@ projectRouter.patch(
   verifyUser(PlatformRole.USER),
   projectController.updateProject,
 );
+
+projectRouter.use("/:workspaceId/project/:projectId", aiRouter);
 
 // Delete Project
 projectRouter.delete(

@@ -44,6 +44,7 @@ export const ModelName = {
     Payment: 'Payment',
     Project: 'Project',
     Sprint: 'Sprint',
+    Summary: 'Summary',
     Task: 'Task',
     User: 'User',
     Workspace: 'Workspace'
@@ -106,6 +107,16 @@ export const SprintScalarFieldEnum = {
     sprint_progress: 'sprint_progress',
     startDate: 'startDate',
     endDate: 'endDate',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+export const SummaryScalarFieldEnum = {
+    id: 'id',
+    owner_id: 'owner_id',
+    workspace_id: 'workspace_id',
+    project_id: 'project_id',
+    topic: 'topic',
+    result: 'result',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
 };
