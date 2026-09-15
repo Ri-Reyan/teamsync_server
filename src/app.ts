@@ -10,7 +10,6 @@ import passport from "passport";
 import worksapceRouter from "./module/user/workspace/worksapce.route.js";
 import cookieParser from "cookie-parser";
 import paymentRouter from "./module/user/payment/payment.route.js";
-import adminAuthRouter from "./module/admin/adminAuth/admin.route.js";
 import adminPanelRouter from "./module/admin/panel/panel.route.js";
 
 const app = express();
@@ -41,7 +40,6 @@ app.use("/api/v1/user/workspace", worksapceRouter);
 
 app.use("/api/v1/user/payment", paymentRouter);
 
-app.use("/api/v1/admin", adminAuthRouter);
 app.use("/api/v1/admin/panel", adminPanelRouter);
 
 app.use(globalErrorHandler);

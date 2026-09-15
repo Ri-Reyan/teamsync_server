@@ -4,16 +4,12 @@ import { prisma } from "../../lib/prisma.js";
 import redisClient from "../../lib/redis.js";
 import { convertToHash } from "../../utils/argon.js";
 import { genOtp } from "../../utils/otp.js";
-import {
-  LoginPayloadType,
-  RegisterPayloadType,
-  VerifyOtpPayloadType,
-} from "./auth.interface.js";
+import { RegisterPayloadType, VerifyOtpPayloadType } from "./auth.interface.js";
 import { sendEmail } from "../../utils/sendEmail.js";
 import ejs from "ejs";
 
 const registeUserService = async (paylaod: RegisterPayloadType) => {
-  const { username, email, password } = paylaod;
+  const { username, email, password, role } = paylaod;
 
   const isExistingUser = await prisma.user.findUnique({
     where: {
@@ -47,6 +43,7 @@ const registeUserService = async (paylaod: RegisterPayloadType) => {
       username,
       email,
       password: hashedPassword,
+      role,
     }),
     {
       expiration: {
@@ -104,6 +101,7 @@ const verifyRegistrationOtpService = async (payload: VerifyOtpPayloadType) => {
       email: parsedUser.email,
       password: parsedUser.password,
       signUpMethod: "CREDENTIALS",
+      platformRole: parsedUser.role,
     },
     omit: {
       password: true,
@@ -119,42 +117,7 @@ const verifyRegistrationOtpService = async (payload: VerifyOtpPayloadType) => {
   return user;
 };
 
-const loginService = async (payload: LoginPayloadType) => {
-  const { email, password } = payload;
-
-  const isExistingUser = await prisma.user.findUniqueOrThrow({
-    where: {
-      email,
-    },
-  });
-
-  if (isExistingUser.signUpMethod === "GOOGLE") {
-    const user = isExistingUser;
-
-    const otpCode = genOtp();
-
-    const templatePath = path.join(process.cwd(), "src/views/verify-email.ejs");
-
-    const html = await ejs.renderFile(templatePath, {
-      username: user.username,
-      otpCode: otpCode,
-      expiresIn: 15,
-    });
-
-    const sendEmailPayload = {
-      to: email,
-      subject: "Welcome to Team Sync",
-      html,
-    };
-
-    sendEmail(sendEmailPayload);
-
-    return isExistingUser;
-  }
-};
-
 export const authService = {
   registeUserService,
   verifyRegistrationOtpService,
-  loginService,
 };

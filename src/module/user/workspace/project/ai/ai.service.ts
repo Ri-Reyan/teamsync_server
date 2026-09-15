@@ -167,7 +167,7 @@ User:
 ${userMessage}
 `;
 
-  const response = await genAI(prompt);
+  let response = await genAI(prompt);
 
   if (!response) {
     throw new AppError("Something went wrong", 400);
@@ -215,9 +215,13 @@ OUTPUT FORMAT RULE
 Output ONLY the formatted summary. Do NOT write introductions, explanations, or meta-comments.
 `;
 
-  const responce = await genAI(conversationSummaryPrompt);
+  let response = await genAI(conversationSummaryPrompt);
 
-  return responce;
+  if (!response) {
+    throw new AppError("Something went wrong", 400);
+  }
+
+  return response;
 };
 
 const getConversationService = async (payload: GetConversationType) => {
@@ -294,6 +298,7 @@ const getProjectContext = async (payload: GetConversationType) => {
       workspace: {
         select: {
           owner_id: true,
+          owner: true,
         },
       },
     },
@@ -328,6 +333,21 @@ const generateProjectAIResponse = async (
 ) => {
   const project = await getProjectContext(payload);
   const previousConversation = await getConversationService(payload);
+
+  if (
+    project.workspace.owner.package === "STARTER" &&
+    (previousConversation?.length ?? 0) >= 10
+  ) {
+    throw new AppError("Please upgrade your package", 400);
+  }
+
+  if (
+    project.workspace.owner.package === "PROFESSIONAL" &&
+    (previousConversation?.length ?? 0) >= 10
+  ) {
+    throw new AppError("Please upgrade your package", 400);
+  }
+
   const tasks = project.sprints.flatMap((sprint) =>
     sprint.tasks.map((task) => ({
       status: task.task_status,
@@ -369,9 +389,7 @@ const generateProjectSummaryService = (payload: GetConversationType) =>
   generateProjectAIResponse(payload, true);
 
 export const AIService = {
-  genAIChatService,
   generateChatResponseService,
   generateProjectSummaryService,
-  genPreviousConvresationSummary,
   getConversationService,
 };

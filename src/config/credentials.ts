@@ -23,4 +23,5 @@ export const credentials = {
     .JWT_ACCESS_TOKEN_EXPIRES as SignOptions["expiresIn"],
   stripe_secret_key: process.env.STRIPE_SECRET_KEY,
   gemini_api_key: process.env.GEMINI_API_KEY,
+  groq_api_key: process.env.GROQ_API_KEY,
 };

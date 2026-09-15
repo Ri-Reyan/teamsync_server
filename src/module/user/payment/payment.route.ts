@@ -7,12 +7,12 @@ const paymentRouter = express.Router();
 
 paymentRouter.post(
   "/checkout",
-  verifyUser(PlatformRole.USER, PlatformRole.ADMIN),
+  verifyUser(PlatformRole.USER),
   paymentController.createPayment,
 );
 paymentRouter.post(
   "/confirm",
-  verifyUser(PlatformRole.USER, PlatformRole.ADMIN),
+  verifyUser(PlatformRole.USER),
   paymentController.confirmPayment,
 );
 

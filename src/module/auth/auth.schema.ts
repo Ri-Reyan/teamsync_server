@@ -10,6 +10,7 @@ export const registerValidation = z.object({
     .string()
     .min(8, { message: "Password must be at least 8 charecters" })
     .max(50, { message: "Password must be smaller than 200 charecters" }),
+  role: z.enum(["ADMIN", "USER"]).optional().default("USER"),
 });
 
 export const verifyOtpValidation = z.object({

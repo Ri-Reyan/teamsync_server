@@ -2,6 +2,7 @@ import AppError from "../../../global/AppError.js";
 import catchAsync from "../../../global/catchAsync.js";
 import { Request, Response } from "express";
 import { paymentService } from "./payment.service.js";
+import sendResponse from "../../../global/sendResponse.js";
 
 const createPayment = catchAsync(async (req: Request, res: Response) => {
   const userId = req.user?.id;
@@ -15,8 +16,9 @@ const createPayment = catchAsync(async (req: Request, res: Response) => {
     req.body.package,
   );
 
-  res.status(200).json({
+  sendResponse(res, {
     success: true,
+    statusCode: 201,
     message: "Payment session created successfully",
     data: payment,
   });
@@ -34,8 +36,9 @@ const confirmPayment = catchAsync(async (req: Request, res: Response) => {
     req.body.sessionId,
   );
 
-  res.status(200).json({
+  sendResponse(res, {
     success: true,
+    statusCode: 200,
     message: "Payment confirmed successfully",
     data: user,
   });
