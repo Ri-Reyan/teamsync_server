@@ -4,8 +4,16 @@ import { prisma } from "../../../lib/prisma.js";
 const getDashboard = async () => {
   const [totalUsers, premiumUsers, workspaceCount, projectCount, payments] =
     await Promise.all([
-      prisma.user.count({ where: { platformRole: "USER" } }),
-      prisma.user.count({ where: { platformRole: "USER", isPremium: true } }),
+      prisma.user.count({
+        where: { platformRole: "USER", NOT: { email: "user@example.com" } },
+      }),
+      prisma.user.count({
+        where: {
+          platformRole: "USER",
+          isPremium: true,
+          NOT: { email: "user@example.com" },
+        },
+      }),
       prisma.workspace.count(),
       prisma.project.count(),
       prisma.payment.aggregate({
@@ -25,7 +33,7 @@ const getDashboard = async () => {
 
 const getUsers = async () =>
   prisma.user.findMany({
-    where: { platformRole: "USER" },
+    where: { platformRole: "USER", NOT: { email: "user@example.com" } },
     select: {
       id: true,
       username: true,

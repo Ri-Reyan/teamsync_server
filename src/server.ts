@@ -4,6 +4,7 @@ import app from "./app.js";
 import { prisma } from "./lib/prisma.js";
 import { credentials } from "./config/credentials.js";
 import redisClient, { connectRedis } from "./lib/redis.js";
+import seed from "./lib/seed.js";
 
 const main = async () => {
   const server = http.createServer(app);
@@ -59,6 +60,8 @@ const main = async () => {
     console.log("◇ [Supabase]: Connected successfully");
 
     await connectRedis();
+
+    await seed();
 
     server.listen(credentials.port || 4000, () => {
       console.log(
