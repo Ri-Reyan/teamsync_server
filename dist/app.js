@@ -9,8 +9,8 @@ import passport from "passport";
 import worksapceRouter from "./module/user/workspace/worksapce.route.js";
 import cookieParser from "cookie-parser";
 import paymentRouter from "./module/user/payment/payment.route.js";
-import adminAuthRouter from "./module/admin/adminAuth/admin.route.js";
 import adminPanelRouter from "./module/admin/panel/panel.route.js";
+import rateLimiter from "./middleware/rateLimiter.js";
 const app = express();
 app.use(cors({
     origin: credentials.client_url,
@@ -27,10 +27,9 @@ app.get("/", (req, res) => {
         message: "Server is running",
     });
 });
-app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/user/workspace", worksapceRouter);
-app.use("/api/v1/user/payment", paymentRouter);
-app.use("/api/v1/admin", adminAuthRouter);
-app.use("/api/v1/admin/panel", adminPanelRouter);
+app.use("/api/v1/auth", rateLimiter({ windowMs: 15 * 60 * 1000, max: 100, keyPrefix: "auth" }), authRouter);
+app.use("/api/v1/user/workspace", rateLimiter({ windowMs: 15 * 60 * 1000, max: 300, keyPrefix: "workspace" }), worksapceRouter);
+app.use("/api/v1/user/payment", rateLimiter({ windowMs: 15 * 60 * 1000, max: 30, keyPrefix: "payment" }), paymentRouter);
+app.use("/api/v1/admin/panel", rateLimiter({ windowMs: 15 * 60 * 1000, max: 100, keyPrefix: "admin" }), adminPanelRouter);
 app.use(globalErrorHandler);
 export default app;

@@ -1,14 +1,16 @@
 import AppError from "../../../global/AppError.js";
 import catchAsync from "../../../global/catchAsync.js";
 import { paymentService } from "./payment.service.js";
+import sendResponse from "../../../global/sendResponse.js";
 const createPayment = catchAsync(async (req, res) => {
     const userId = req.user?.id;
     if (!userId) {
         throw new AppError("user not  found", 400);
     }
     const payment = await paymentService.createPaymentService(userId, req.body.package);
-    res.status(200).json({
+    sendResponse(res, {
         success: true,
+        statusCode: 201,
         message: "Payment session created successfully",
         data: payment,
     });
@@ -19,8 +21,9 @@ const confirmPayment = catchAsync(async (req, res) => {
         throw new AppError("User not found", 401);
     }
     const user = await paymentService.confirmPaymentService(userId, req.body.sessionId);
-    res.status(200).json({
+    sendResponse(res, {
         success: true,
+        statusCode: 200,
         message: "Payment confirmed successfully",
         data: user,
     });
