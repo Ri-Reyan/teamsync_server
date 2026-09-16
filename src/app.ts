@@ -1,3 +1,4 @@
+import "./global/globalUser.js";
 import express from "express";
 import cors from "cors";
 import { credentials } from "./config/credentials.js";
