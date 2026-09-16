@@ -1,6 +1,7 @@
 import { JwtPayload, SignOptions } from "jsonwebtoken";
 import jwt from "jsonwebtoken";
 import { Response } from "express";
+import { credentials } from "../config/credentials.js";
 
 export const generateToken = (
   secret: string,
@@ -17,7 +18,7 @@ export const verifyToken = (token: string, secret: string) => {
 };
 
 export const sendCookie = (res: Response, name: string, value: string) => {
-  const isProduction = process.env.NODE_ENV === "production";
+  const isProduction = credentials.node_env === "production";
 
   res.cookie(name, value, {
     httpOnly: true,
