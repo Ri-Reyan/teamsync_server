@@ -18,7 +18,8 @@ export const verifyToken = (token: string, secret: string) => {
 };
 
 export const sendCookie = (res: Response, name: string, value: string) => {
-  const isProduction = credentials.node_env === "production";
+  const isProduction =
+    credentials.node_env === "production" || process.env.VERCEL === "1";
 
   res.cookie(name, value, {
     httpOnly: true,

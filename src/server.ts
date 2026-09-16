@@ -11,7 +11,8 @@ const main = async () => {
 
   const io = new Server(server, {
     cors: {
-      origin: "http://localhost:3000", // তোমার ফ্রন্টএন্ড URL
+      origin: credentials.client_url,
+      credentials: true,
       methods: ["GET", "POST", "PATCH", "DELETE"],
     },
   });
