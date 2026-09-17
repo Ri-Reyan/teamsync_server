@@ -25,4 +25,5 @@ export const credentials = {
   gemini_api_key: process.env.GEMINI_API_KEY,
   groq_api_key: process.env.GROQ_API_KEY,
   node_env: process.env.NODE_ENV,
+  client_url_test: process.env.CLIENT_URL_TEST,
 };

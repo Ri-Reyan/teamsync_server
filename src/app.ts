@@ -18,7 +18,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: credentials.client_url,
+    origin: [
+      String(credentials.client_url),
+      String(credentials.client_url_test),
+    ],
     credentials: true,
   }),
 );
