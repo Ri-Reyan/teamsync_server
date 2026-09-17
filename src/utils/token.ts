@@ -18,13 +18,11 @@ export const verifyToken = (token: string, secret: string) => {
 };
 
 export const sendCookie = (res: Response, name: string, value: string) => {
-  const isProduction =
-    credentials.node_env === "production" || process.env.VERCEL === "1";
-
   res.cookie(name, value, {
     httpOnly: true,
-    secure: isProduction,
-    sameSite: isProduction ? "none" : "lax",
+    secure: true,
+    sameSite: "none",
+    partitioned: true,
     path: "/",
     maxAge:
       name === "refreshToken" ? 1000 * 60 * 60 * 24 * 7 : 1000 * 60 * 60 * 24,

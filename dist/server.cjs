@@ -57,7 +57,8 @@ var credentials = {
   stripe_secret_key: process.env.STRIPE_SECRET_KEY,
   gemini_api_key: process.env.GEMINI_API_KEY,
   groq_api_key: process.env.GROQ_API_KEY,
-  node_env: process.env.NODE_ENV
+  node_env: process.env.NODE_ENV,
+  client_url_test: process.env.CLIENT_URL_TEST
 };
 
 // src/app.ts
@@ -432,12 +433,13 @@ var generateToken = (secret, payload, time) => {
 var verifyToken = (token, secret) => {
   return import_jsonwebtoken.default.verify(token, secret);
 };
+var isProduction = credentials.node_env === "production";
 var sendCookie = (res, name, value) => {
-  const isProduction = credentials.node_env === "production" || process.env.VERCEL === "1";
   res.cookie(name, value, {
     httpOnly: true,
     secure: isProduction,
     sameSite: isProduction ? "none" : "lax",
+    partitioned: isProduction,
     path: "/",
     maxAge: name === "refreshToken" ? 1e3 * 60 * 60 * 24 * 7 : 1e3 * 60 * 60 * 24
   });
@@ -3313,7 +3315,10 @@ var panel_route_default = adminPanelRouter;
 var app = (0, import_express11.default)();
 app.use(
   (0, import_cors.default)({
-    origin: credentials.client_url,
+    origin: [
+      String(credentials.client_url),
+      String(credentials.client_url_test)
+    ],
     credentials: true
   })
 );
@@ -3426,6 +3431,7 @@ var seed_default = seed;
 // src/server.ts
 var main = async () => {
   const server = import_http.default.createServer(app_default);
+  console.log(isProduction);
   const io = new import_socket.Server(server, {
     cors: {
       origin: credentials.client_url,
