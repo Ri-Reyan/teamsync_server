@@ -23,7 +23,6 @@ export const sendCookie = (res: Response, name: string, value: string) => {
     secure: true,
     sameSite: "none",
     partitioned: true,
-    path: "/",
     maxAge:
       name === "refreshToken" ? 1000 * 60 * 60 * 24 * 7 : 1000 * 60 * 60 * 24,
   });
