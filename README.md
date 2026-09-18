@@ -118,6 +118,8 @@ The API is available at `http://localhost:5000`. The health response is `GET /`.
 
 ## API Overview
 
+For copy-paste Postman requests, demo accounts, sample request bodies, environment variables, and the recommended smoke-test sequence, see [POSTMAN_API.md](POSTMAN_API.md).
+
 All application routes are prefixed with `/api/v1`.
 
 | Area            | Base path          | Purpose                                                             |
