@@ -1,6 +1,19 @@
 import Pusher from "pusher";
 import { credentials } from "../config/credentials.js";
 
+const pusherConfig = [
+  credentials.pusher_app_id,
+  credentials.pusher_key,
+  credentials.pusher_secret,
+  credentials.pusher_cluster,
+];
+
+if (pusherConfig.some((value) => !value)) {
+  throw new Error(
+    "Missing Pusher configuration. Set PUSHER_APP_ID, PUSHER_KEY, PUSHER_SECRET, and PUSHER_CLUSTER.",
+  );
+}
+
 export const pusher = new Pusher({
   appId: credentials.pusher_app_id as string,
   key: credentials.pusher_key as string,
