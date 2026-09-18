@@ -91,7 +91,7 @@ const deleteTask = async (taskId: number) => {
     // Task ডিলিট হওয়ার পর Sprint Metrics আপডেট
     await updateSprintMetrics(tx, task.sprint_id);
 
-    return true;
+    return task;
   });
 };
 

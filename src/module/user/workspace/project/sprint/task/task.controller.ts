@@ -4,6 +4,7 @@ import sendResponse from "../../../../../../global/sendResponse.js";
 import { Request, Response } from "express";
 import { createTaskSchema, updateTaskSchema } from "./task.schema.js";
 import { taskService } from "./task.service.js";
+import { publishTaskEvent } from "../../../../../../lib/pusher.js";
 
 const createTask = catchAsync(async (req: Request, res: Response) => {
   const sprintId = Number(req.params.sprintId);
@@ -19,6 +20,10 @@ const createTask = catchAsync(async (req: Request, res: Response) => {
   }
 
   const task = await taskService.createTask(sprintId, result.data);
+  publishTaskEvent(sprintId, "task_created", {
+    sprintId,
+    task: { ...task, status: task.task_status },
+  });
 
   sendResponse(res, {
     success: true,
@@ -59,6 +64,10 @@ const updateTask = catchAsync(async (req: Request, res: Response) => {
   }
 
   const task = await taskService.updateTask(taskId, result.data);
+  publishTaskEvent(task.sprint_id, "task_updated", {
+    sprintId: task.sprint_id,
+    task: { ...task, status: task.task_status },
+  });
 
   sendResponse(res, {
     success: true,
@@ -75,7 +84,11 @@ const deleteTask = catchAsync(async (req: Request, res: Response) => {
     throw new AppError("Valid task ID is required", 400);
   }
 
-  await taskService.deleteTask(taskId);
+  const task = await taskService.deleteTask(taskId);
+  publishTaskEvent(task.sprint_id, "task_deleted", {
+    sprintId: task.sprint_id,
+    taskId,
+  });
 
   sendResponse(res, {
     success: true,

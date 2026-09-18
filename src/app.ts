@@ -13,6 +13,9 @@ import cookieParser from "cookie-parser";
 import paymentRouter from "./module/user/payment/payment.route.js";
 import adminPanelRouter from "./module/admin/panel/panel.route.js";
 import rateLimiter from "./middleware/rateLimiter.js";
+import verifyUser from "./middleware/verifyUser.js";
+import { PlatformRole } from "./generated/prisma/enums.js";
+import { pusher } from "./lib/pusher.js";
 
 const app = express();
 
@@ -35,6 +38,34 @@ app.get("/", (req: Request, res: Response) => {
     message: "Server is running",
   });
 });
+
+app.get("/api/v1/realtime/config", (req: Request, res: Response) => {
+  res.json({
+    success: true,
+    data: { key: credentials.pusher_key, cluster: credentials.pusher_cluster },
+  });
+});
+
+app.post(
+  "/api/v1/realtime/auth",
+  verifyUser(PlatformRole.USER),
+  (req: Request, res: Response) => {
+    const { socket_id: socketId, channel_name: channelName } = req.body;
+
+    if (
+      typeof socketId !== "string" ||
+      typeof channelName !== "string" ||
+      !channelName.startsWith("private-sprint-")
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid channel authentication request",
+      });
+    }
+
+    return res.send(pusher.authenticate(socketId, channelName));
+  },
+);
 
 app.use(
   "/api/v1/auth",

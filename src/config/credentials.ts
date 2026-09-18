@@ -25,4 +25,8 @@ export const credentials = {
   gemini_api_key: process.env.GEMINI_API_KEY,
   groq_api_key: process.env.GROQ_API_KEY,
   node_env: process.env.NODE_ENV,
+  pusher_app_id: process.env.PUSHER_APP_ID,
+  pusher_key: process.env.PUSHER_KEY,
+  pusher_secret: process.env.PUSHER_SECRET,
+  pusher_cluster: process.env.PUSHER_CLUSTER,
 };
