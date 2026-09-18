@@ -1,7 +1,6 @@
 import { JwtPayload, SignOptions } from "jsonwebtoken";
 import jwt from "jsonwebtoken";
 import { Response } from "express";
-import { credentials } from "../config/credentials.js";
 
 export const generateToken = (
   secret: string,
@@ -22,7 +21,6 @@ export const sendCookie = (res: Response, name: string, value: string) => {
     httpOnly: true,
     secure: true,
     sameSite: "none",
-    partitioned: true,
     maxAge:
       name === "refreshToken" ? 1000 * 60 * 60 * 24 * 7 : 1000 * 60 * 60 * 24,
   });
