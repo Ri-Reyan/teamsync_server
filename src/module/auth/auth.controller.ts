@@ -236,7 +236,7 @@ export const forgotPassword = catchAsync(
       resetUrl: resetUrl,
     });
 
-    await sendEmail({
+    const sent = await sendEmail({
       to: user.email,
       subject: "Password Reset Request",
       html,

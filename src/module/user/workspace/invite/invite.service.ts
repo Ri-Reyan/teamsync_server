@@ -9,7 +9,6 @@ import {
 } from "./invite.interface.js";
 import path from "path";
 import ejs from "ejs";
-import { Role } from "../../../../generated/prisma/enums.js";
 
 const getInvitationService = async (paylaod: GetInvitationPayloadType) => {
   const user = await prisma.user.findUnique({
