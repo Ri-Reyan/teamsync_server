@@ -79,6 +79,7 @@ const verifyUser = (...allowedRoles: PlatformRole[]) =>
       package: user.package,
     };
 
+    // যদি অ্যাক্সেস টোকেন এক্সপায়ার হয়ে রিফ্রেশ টোকেন দিয়ে কাজ চালানো হয়, তবে নতুন কুকি সেট করা
     if (isAccessTokenExpired || !accessToken) {
       const newAccessToken = generateToken(
         credentials.jwt_access_token_secret,

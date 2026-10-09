@@ -31,11 +31,11 @@ export type UserMinAggregateOutputType = {
   password: string | null
   platformRole: $Enums.PlatformRole | null
   isPremium: boolean | null
-  package: $Enums.Package | null
   signUpMethod: $Enums.SignUpMethod | null
   status: $Enums.UserStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  package: $Enums.Package | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -45,11 +45,11 @@ export type UserMaxAggregateOutputType = {
   password: string | null
   platformRole: $Enums.PlatformRole | null
   isPremium: boolean | null
-  package: $Enums.Package | null
   signUpMethod: $Enums.SignUpMethod | null
   status: $Enums.UserStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  package: $Enums.Package | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -59,11 +59,11 @@ export type UserCountAggregateOutputType = {
   password: number
   platformRole: number
   isPremium: number
-  package: number
   signUpMethod: number
   status: number
   createdAt: number
   updatedAt: number
+  package: number
   _all: number
 }
 
@@ -75,11 +75,11 @@ export type UserMinAggregateInputType = {
   password?: true
   platformRole?: true
   isPremium?: true
-  package?: true
   signUpMethod?: true
   status?: true
   createdAt?: true
   updatedAt?: true
+  package?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -89,11 +89,11 @@ export type UserMaxAggregateInputType = {
   password?: true
   platformRole?: true
   isPremium?: true
-  package?: true
   signUpMethod?: true
   status?: true
   createdAt?: true
   updatedAt?: true
+  package?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -103,11 +103,11 @@ export type UserCountAggregateInputType = {
   password?: true
   platformRole?: true
   isPremium?: true
-  package?: true
   signUpMethod?: true
   status?: true
   createdAt?: true
   updatedAt?: true
+  package?: true
   _all?: true
 }
 
@@ -190,11 +190,11 @@ export type UserGroupByOutputType = {
   password: string | null
   platformRole: $Enums.PlatformRole
   isPremium: boolean
-  package: $Enums.Package
   signUpMethod: $Enums.SignUpMethod
   status: $Enums.UserStatus
   createdAt: Date
   updatedAt: Date
+  package: $Enums.Package
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -225,16 +225,16 @@ export type UserWhereInput = {
   password?: Prisma.StringNullableFilter<"User"> | string | null
   platformRole?: Prisma.EnumPlatformRoleFilter<"User"> | $Enums.PlatformRole
   isPremium?: Prisma.BoolFilter<"User"> | boolean
-  package?: Prisma.EnumPackageFilter<"User"> | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFilter<"User"> | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  workspaces?: Prisma.WorkspaceListRelationFilter
-  members?: Prisma.MemberListRelationFilter
+  package?: Prisma.EnumPackageFilter<"User"> | $Enums.Package
   invitations?: Prisma.InvitationListRelationFilter
+  members?: Prisma.MemberListRelationFilter
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
   summary?: Prisma.SummaryListRelationFilter
+  workspaces?: Prisma.WorkspaceListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -244,16 +244,16 @@ export type UserOrderByWithRelationInput = {
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   platformRole?: Prisma.SortOrder
   isPremium?: Prisma.SortOrder
-  package?: Prisma.SortOrder
   signUpMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  workspaces?: Prisma.WorkspaceOrderByRelationAggregateInput
-  members?: Prisma.MemberOrderByRelationAggregateInput
+  package?: Prisma.SortOrder
   invitations?: Prisma.InvitationOrderByRelationAggregateInput
+  members?: Prisma.MemberOrderByRelationAggregateInput
   payment?: Prisma.PaymentOrderByWithRelationInput
   summary?: Prisma.SummaryOrderByRelationAggregateInput
+  workspaces?: Prisma.WorkspaceOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -266,16 +266,16 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   password?: Prisma.StringNullableFilter<"User"> | string | null
   platformRole?: Prisma.EnumPlatformRoleFilter<"User"> | $Enums.PlatformRole
   isPremium?: Prisma.BoolFilter<"User"> | boolean
-  package?: Prisma.EnumPackageFilter<"User"> | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFilter<"User"> | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  workspaces?: Prisma.WorkspaceListRelationFilter
-  members?: Prisma.MemberListRelationFilter
+  package?: Prisma.EnumPackageFilter<"User"> | $Enums.Package
   invitations?: Prisma.InvitationListRelationFilter
+  members?: Prisma.MemberListRelationFilter
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
   summary?: Prisma.SummaryListRelationFilter
+  workspaces?: Prisma.WorkspaceListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -285,11 +285,11 @@ export type UserOrderByWithAggregationInput = {
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   platformRole?: Prisma.SortOrder
   isPremium?: Prisma.SortOrder
-  package?: Prisma.SortOrder
   signUpMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  package?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -305,11 +305,11 @@ export type UserScalarWhereWithAggregatesInput = {
   password?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   platformRole?: Prisma.EnumPlatformRoleWithAggregatesFilter<"User"> | $Enums.PlatformRole
   isPremium?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  package?: Prisma.EnumPackageWithAggregatesFilter<"User"> | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodWithAggregatesFilter<"User"> | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusWithAggregatesFilter<"User"> | $Enums.UserStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  package?: Prisma.EnumPackageWithAggregatesFilter<"User"> | $Enums.Package
 }
 
 export type UserCreateInput = {
@@ -319,16 +319,16 @@ export type UserCreateInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
-  members?: Prisma.MemberCreateNestedManyWithoutUserInput
+  package?: $Enums.Package
   invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentCreateNestedOneWithoutUserInput
   summary?: Prisma.SummaryCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -338,16 +338,16 @@ export type UserUncheckedCreateInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
+  package?: $Enums.Package
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutUserInput
   summary?: Prisma.SummaryUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUpdateInput = {
@@ -357,16 +357,16 @@ export type UserUpdateInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
-  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutUserNestedInput
   summary?: Prisma.SummaryUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -376,16 +376,16 @@ export type UserUncheckedUpdateInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutUserNestedInput
   summary?: Prisma.SummaryUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -395,11 +395,11 @@ export type UserCreateManyInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  package?: $Enums.Package
 }
 
 export type UserUpdateManyMutationInput = {
@@ -409,11 +409,11 @@ export type UserUpdateManyMutationInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -423,11 +423,11 @@ export type UserUncheckedUpdateManyInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
 }
 
 export type UserScalarRelationFilter = {
@@ -442,11 +442,11 @@ export type UserCountOrderByAggregateInput = {
   password?: Prisma.SortOrder
   platformRole?: Prisma.SortOrder
   isPremium?: Prisma.SortOrder
-  package?: Prisma.SortOrder
   signUpMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  package?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -456,11 +456,11 @@ export type UserMaxOrderByAggregateInput = {
   password?: Prisma.SortOrder
   platformRole?: Prisma.SortOrder
   isPremium?: Prisma.SortOrder
-  package?: Prisma.SortOrder
   signUpMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  package?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -470,11 +470,11 @@ export type UserMinOrderByAggregateInput = {
   password?: Prisma.SortOrder
   platformRole?: Prisma.SortOrder
   isPremium?: Prisma.SortOrder
-  package?: Prisma.SortOrder
   signUpMethod?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  package?: Prisma.SortOrder
 }
 
 export type UserCreateNestedOneWithoutInvitationsInput = {
@@ -570,15 +570,15 @@ export type UserCreateWithoutInvitationsInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
+  package?: $Enums.Package
   members?: Prisma.MemberCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentCreateNestedOneWithoutUserInput
   summary?: Prisma.SummaryCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutInvitationsInput = {
@@ -588,15 +588,15 @@ export type UserUncheckedCreateWithoutInvitationsInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
+  package?: $Enums.Package
   members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutUserInput
   summary?: Prisma.SummaryUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutInvitationsInput = {
@@ -622,15 +622,15 @@ export type UserUpdateWithoutInvitationsInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   members?: Prisma.MemberUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutUserNestedInput
   summary?: Prisma.SummaryUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInvitationsInput = {
@@ -640,15 +640,15 @@ export type UserUncheckedUpdateWithoutInvitationsInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutUserNestedInput
   summary?: Prisma.SummaryUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateWithoutMembersInput = {
@@ -658,15 +658,15 @@ export type UserCreateWithoutMembersInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
+  package?: $Enums.Package
   invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentCreateNestedOneWithoutUserInput
   summary?: Prisma.SummaryCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutMembersInput = {
@@ -676,15 +676,15 @@ export type UserUncheckedCreateWithoutMembersInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
+  package?: $Enums.Package
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutUserInput
   summary?: Prisma.SummaryUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutMembersInput = {
@@ -710,15 +710,15 @@ export type UserUpdateWithoutMembersInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutUserNestedInput
   summary?: Prisma.SummaryUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembersInput = {
@@ -728,15 +728,15 @@ export type UserUncheckedUpdateWithoutMembersInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutUserNestedInput
   summary?: Prisma.SummaryUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateWithoutPaymentInput = {
@@ -746,15 +746,15 @@ export type UserCreateWithoutPaymentInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
-  members?: Prisma.MemberCreateNestedManyWithoutUserInput
+  package?: $Enums.Package
   invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberCreateNestedManyWithoutUserInput
   summary?: Prisma.SummaryCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutPaymentInput = {
@@ -764,15 +764,15 @@ export type UserUncheckedCreateWithoutPaymentInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
+  package?: $Enums.Package
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
   summary?: Prisma.SummaryUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutPaymentInput = {
@@ -798,15 +798,15 @@ export type UserUpdateWithoutPaymentInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
-  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
   summary?: Prisma.SummaryUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPaymentInput = {
@@ -816,15 +816,15 @@ export type UserUncheckedUpdateWithoutPaymentInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
   summary?: Prisma.SummaryUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateWithoutSummaryInput = {
@@ -834,15 +834,15 @@ export type UserCreateWithoutSummaryInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
-  members?: Prisma.MemberCreateNestedManyWithoutUserInput
+  package?: $Enums.Package
   invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentCreateNestedOneWithoutUserInput
+  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutSummaryInput = {
@@ -852,15 +852,15 @@ export type UserUncheckedCreateWithoutSummaryInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
+  package?: $Enums.Package
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutUserInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutSummaryInput = {
@@ -886,15 +886,15 @@ export type UserUpdateWithoutSummaryInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
-  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutUserNestedInput
+  workspaces?: Prisma.WorkspaceUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSummaryInput = {
@@ -904,15 +904,15 @@ export type UserUncheckedUpdateWithoutSummaryInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
-  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutUserNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateWithoutWorkspacesInput = {
@@ -922,13 +922,13 @@ export type UserCreateWithoutWorkspacesInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  members?: Prisma.MemberCreateNestedManyWithoutUserInput
+  package?: $Enums.Package
   invitations?: Prisma.InvitationCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentCreateNestedOneWithoutUserInput
   summary?: Prisma.SummaryCreateNestedManyWithoutOwnerInput
 }
@@ -940,13 +940,13 @@ export type UserUncheckedCreateWithoutWorkspacesInput = {
   password?: string | null
   platformRole?: $Enums.PlatformRole
   isPremium?: boolean
-  package?: $Enums.Package
   signUpMethod?: $Enums.SignUpMethod
   status?: $Enums.UserStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
+  package?: $Enums.Package
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutUserInput
+  members?: Prisma.MemberUncheckedCreateNestedManyWithoutUserInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutUserInput
   summary?: Prisma.SummaryUncheckedCreateNestedManyWithoutOwnerInput
 }
@@ -974,13 +974,13 @@ export type UserUpdateWithoutWorkspacesInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   invitations?: Prisma.InvitationUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutUserNestedInput
   summary?: Prisma.SummaryUpdateManyWithoutOwnerNestedInput
 }
@@ -992,13 +992,13 @@ export type UserUncheckedUpdateWithoutWorkspacesInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platformRole?: Prisma.EnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole
   isPremium?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   signUpMethod?: Prisma.EnumSignUpMethodFieldUpdateOperationsInput | $Enums.SignUpMethod
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
+  package?: Prisma.EnumPackageFieldUpdateOperationsInput | $Enums.Package
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutUserNestedInput
+  members?: Prisma.MemberUncheckedUpdateManyWithoutUserNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutUserNestedInput
   summary?: Prisma.SummaryUncheckedUpdateManyWithoutOwnerNestedInput
 }
@@ -1009,17 +1009,17 @@ export type UserUncheckedUpdateWithoutWorkspacesInput = {
  */
 
 export type UserCountOutputType = {
-  workspaces: number
-  members: number
   invitations: number
+  members: number
   summary: number
+  workspaces: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  workspaces?: boolean | UserCountOutputTypeCountWorkspacesArgs
-  members?: boolean | UserCountOutputTypeCountMembersArgs
   invitations?: boolean | UserCountOutputTypeCountInvitationsArgs
+  members?: boolean | UserCountOutputTypeCountMembersArgs
   summary?: boolean | UserCountOutputTypeCountSummaryArgs
+  workspaces?: boolean | UserCountOutputTypeCountWorkspacesArgs
 }
 
 /**
@@ -1035,8 +1035,8 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountWorkspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.WorkspaceWhereInput
+export type UserCountOutputTypeCountInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvitationWhereInput
 }
 
 /**
@@ -1049,15 +1049,15 @@ export type UserCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.Ex
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InvitationWhereInput
+export type UserCountOutputTypeCountSummaryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SummaryWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountSummaryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SummaryWhereInput
+export type UserCountOutputTypeCountWorkspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WorkspaceWhereInput
 }
 
 
@@ -1068,16 +1068,16 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   password?: boolean
   platformRole?: boolean
   isPremium?: boolean
-  package?: boolean
   signUpMethod?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  workspaces?: boolean | Prisma.User$workspacesArgs<ExtArgs>
-  members?: boolean | Prisma.User$membersArgs<ExtArgs>
+  package?: boolean
   invitations?: boolean | Prisma.User$invitationsArgs<ExtArgs>
+  members?: boolean | Prisma.User$membersArgs<ExtArgs>
   payment?: boolean | Prisma.User$paymentArgs<ExtArgs>
   summary?: boolean | Prisma.User$summaryArgs<ExtArgs>
+  workspaces?: boolean | Prisma.User$workspacesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1088,11 +1088,11 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   password?: boolean
   platformRole?: boolean
   isPremium?: boolean
-  package?: boolean
   signUpMethod?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  package?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1102,11 +1102,11 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   password?: boolean
   platformRole?: boolean
   isPremium?: boolean
-  package?: boolean
   signUpMethod?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  package?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1116,20 +1116,20 @@ export type UserSelectScalar = {
   password?: boolean
   platformRole?: boolean
   isPremium?: boolean
-  package?: boolean
   signUpMethod?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  package?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "email" | "password" | "platformRole" | "isPremium" | "package" | "signUpMethod" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "email" | "password" | "platformRole" | "isPremium" | "signUpMethod" | "status" | "createdAt" | "updatedAt" | "package", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  workspaces?: boolean | Prisma.User$workspacesArgs<ExtArgs>
-  members?: boolean | Prisma.User$membersArgs<ExtArgs>
   invitations?: boolean | Prisma.User$invitationsArgs<ExtArgs>
+  members?: boolean | Prisma.User$membersArgs<ExtArgs>
   payment?: boolean | Prisma.User$paymentArgs<ExtArgs>
   summary?: boolean | Prisma.User$summaryArgs<ExtArgs>
+  workspaces?: boolean | Prisma.User$workspacesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1138,11 +1138,11 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    workspaces: Prisma.$WorkspacePayload<ExtArgs>[]
-    members: Prisma.$MemberPayload<ExtArgs>[]
     invitations: Prisma.$InvitationPayload<ExtArgs>[]
+    members: Prisma.$MemberPayload<ExtArgs>[]
     payment: Prisma.$PaymentPayload<ExtArgs> | null
     summary: Prisma.$SummaryPayload<ExtArgs>[]
+    workspaces: Prisma.$WorkspacePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1151,11 +1151,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     password: string | null
     platformRole: $Enums.PlatformRole
     isPremium: boolean
-    package: $Enums.Package
     signUpMethod: $Enums.SignUpMethod
     status: $Enums.UserStatus
     createdAt: Date
     updatedAt: Date
+    package: $Enums.Package
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1550,11 +1550,11 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  workspaces<T extends Prisma.User$workspacesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$workspacesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  members<T extends Prisma.User$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invitations<T extends Prisma.User$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  members<T extends Prisma.User$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payment<T extends Prisma.User$paymentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   summary<T extends Prisma.User$summaryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$summaryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SummaryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workspaces<T extends Prisma.User$workspacesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$workspacesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1590,11 +1590,11 @@ export interface UserFieldRefs {
   readonly password: Prisma.FieldRef<"User", 'String'>
   readonly platformRole: Prisma.FieldRef<"User", 'PlatformRole'>
   readonly isPremium: Prisma.FieldRef<"User", 'Boolean'>
-  readonly package: Prisma.FieldRef<"User", 'Package'>
   readonly signUpMethod: Prisma.FieldRef<"User", 'SignUpMethod'>
   readonly status: Prisma.FieldRef<"User", 'UserStatus'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly package: Prisma.FieldRef<"User", 'Package'>
 }
     
 
@@ -1988,27 +1988,27 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.workspaces
+ * User.invitations
  */
-export type User$workspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$invitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Workspace
+   * Select specific fields to fetch from the Invitation
    */
-  select?: Prisma.WorkspaceSelect<ExtArgs> | null
+  select?: Prisma.InvitationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Workspace
+   * Omit specific fields from the Invitation
    */
-  omit?: Prisma.WorkspaceOmit<ExtArgs> | null
+  omit?: Prisma.InvitationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.WorkspaceInclude<ExtArgs> | null
-  where?: Prisma.WorkspaceWhereInput
-  orderBy?: Prisma.WorkspaceOrderByWithRelationInput | Prisma.WorkspaceOrderByWithRelationInput[]
-  cursor?: Prisma.WorkspaceWhereUniqueInput
+  include?: Prisma.InvitationInclude<ExtArgs> | null
+  where?: Prisma.InvitationWhereInput
+  orderBy?: Prisma.InvitationOrderByWithRelationInput | Prisma.InvitationOrderByWithRelationInput[]
+  cursor?: Prisma.InvitationWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.WorkspaceScalarFieldEnum | Prisma.WorkspaceScalarFieldEnum[]
+  distinct?: Prisma.InvitationScalarFieldEnum | Prisma.InvitationScalarFieldEnum[]
 }
 
 /**
@@ -2033,30 +2033,6 @@ export type User$membersArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.MemberScalarFieldEnum | Prisma.MemberScalarFieldEnum[]
-}
-
-/**
- * User.invitations
- */
-export type User$invitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Invitation
-   */
-  select?: Prisma.InvitationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Invitation
-   */
-  omit?: Prisma.InvitationOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.InvitationInclude<ExtArgs> | null
-  where?: Prisma.InvitationWhereInput
-  orderBy?: Prisma.InvitationOrderByWithRelationInput | Prisma.InvitationOrderByWithRelationInput[]
-  cursor?: Prisma.InvitationWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.InvitationScalarFieldEnum | Prisma.InvitationScalarFieldEnum[]
 }
 
 /**
@@ -2100,6 +2076,30 @@ export type User$summaryArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.SummaryScalarFieldEnum | Prisma.SummaryScalarFieldEnum[]
+}
+
+/**
+ * User.workspaces
+ */
+export type User$workspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Workspace
+   */
+  select?: Prisma.WorkspaceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Workspace
+   */
+  omit?: Prisma.WorkspaceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkspaceInclude<ExtArgs> | null
+  where?: Prisma.WorkspaceWhereInput
+  orderBy?: Prisma.WorkspaceOrderByWithRelationInput | Prisma.WorkspaceOrderByWithRelationInput[]
+  cursor?: Prisma.WorkspaceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WorkspaceScalarFieldEnum | Prisma.WorkspaceScalarFieldEnum[]
 }
 
 /**

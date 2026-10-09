@@ -17,10 +17,13 @@ export const verifyToken = (token: string, secret: string) => {
 };
 
 export const sendCookie = (res: Response, name: string, value: string) => {
+  const isProduction = process.env.NODE_ENV === "production";
+
   res.cookie(name, value, {
     httpOnly: true,
-    secure: true,
-    sameSite: "none",
+    secure: isProduction, // প্রোডাকশনে true, লোকাল ডেভেলপমেন্টে false থাকবে
+    sameSite: isProduction ? "none" : "lax", // Localhost ও Cross-domain অ্যাডজাস্টমেন্ট
+    path: "/", // 👈 অত্যন্ত গুরুত্বপূর্ণ: এটি না দিলে অন্য রুটে কুকি যাবে না
     maxAge:
       name === "refreshToken" ? 1000 * 60 * 60 * 24 * 7 : 1000 * 60 * 60 * 24,
   });

@@ -26,70 +26,70 @@ export type AggregateSummary = {
 
 export type SummaryMinAggregateOutputType = {
   id: string | null
-  owner_id: string | null
   workspace_id: string | null
-  project_id: string | null
   topic: string | null
   result: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  project_id: string | null
+  owner_id: string | null
 }
 
 export type SummaryMaxAggregateOutputType = {
   id: string | null
-  owner_id: string | null
   workspace_id: string | null
-  project_id: string | null
   topic: string | null
   result: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  project_id: string | null
+  owner_id: string | null
 }
 
 export type SummaryCountAggregateOutputType = {
   id: number
-  owner_id: number
   workspace_id: number
-  project_id: number
   topic: number
   result: number
   createdAt: number
   updatedAt: number
+  project_id: number
+  owner_id: number
   _all: number
 }
 
 
 export type SummaryMinAggregateInputType = {
   id?: true
-  owner_id?: true
   workspace_id?: true
-  project_id?: true
   topic?: true
   result?: true
   createdAt?: true
   updatedAt?: true
+  project_id?: true
+  owner_id?: true
 }
 
 export type SummaryMaxAggregateInputType = {
   id?: true
-  owner_id?: true
   workspace_id?: true
-  project_id?: true
   topic?: true
   result?: true
   createdAt?: true
   updatedAt?: true
+  project_id?: true
+  owner_id?: true
 }
 
 export type SummaryCountAggregateInputType = {
   id?: true
-  owner_id?: true
   workspace_id?: true
-  project_id?: true
   topic?: true
   result?: true
   createdAt?: true
   updatedAt?: true
+  project_id?: true
+  owner_id?: true
   _all?: true
 }
 
@@ -167,13 +167,13 @@ export type SummaryGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type SummaryGroupByOutputType = {
   id: string
-  owner_id: string
   workspace_id: string
-  project_id: string
   topic: string
   result: string
   createdAt: Date
   updatedAt: Date
+  project_id: string
+  owner_id: string
   _count: SummaryCountAggregateOutputType | null
   _min: SummaryMinAggregateOutputType | null
   _max: SummaryMaxAggregateOutputType | null
@@ -199,25 +199,25 @@ export type SummaryWhereInput = {
   OR?: Prisma.SummaryWhereInput[]
   NOT?: Prisma.SummaryWhereInput | Prisma.SummaryWhereInput[]
   id?: Prisma.UuidFilter<"Summary"> | string
-  owner_id?: Prisma.UuidFilter<"Summary"> | string
   workspace_id?: Prisma.UuidFilter<"Summary"> | string
-  project_id?: Prisma.UuidFilter<"Summary"> | string
   topic?: Prisma.StringFilter<"Summary"> | string
   result?: Prisma.StringFilter<"Summary"> | string
   createdAt?: Prisma.DateTimeFilter<"Summary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Summary"> | Date | string
+  project_id?: Prisma.UuidFilter<"Summary"> | string
+  owner_id?: Prisma.UuidFilter<"Summary"> | string
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type SummaryOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  owner_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
-  project_id?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   result?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  project_id?: Prisma.SortOrder
+  owner_id?: Prisma.SortOrder
   owner?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -226,25 +226,25 @@ export type SummaryWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.SummaryWhereInput | Prisma.SummaryWhereInput[]
   OR?: Prisma.SummaryWhereInput[]
   NOT?: Prisma.SummaryWhereInput | Prisma.SummaryWhereInput[]
-  owner_id?: Prisma.UuidFilter<"Summary"> | string
   workspace_id?: Prisma.UuidFilter<"Summary"> | string
-  project_id?: Prisma.UuidFilter<"Summary"> | string
   topic?: Prisma.StringFilter<"Summary"> | string
   result?: Prisma.StringFilter<"Summary"> | string
   createdAt?: Prisma.DateTimeFilter<"Summary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Summary"> | Date | string
+  project_id?: Prisma.UuidFilter<"Summary"> | string
+  owner_id?: Prisma.UuidFilter<"Summary"> | string
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type SummaryOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  owner_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
-  project_id?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   result?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  project_id?: Prisma.SortOrder
+  owner_id?: Prisma.SortOrder
   _count?: Prisma.SummaryCountOrderByAggregateInput
   _max?: Prisma.SummaryMaxOrderByAggregateInput
   _min?: Prisma.SummaryMinOrderByAggregateInput
@@ -255,122 +255,122 @@ export type SummaryScalarWhereWithAggregatesInput = {
   OR?: Prisma.SummaryScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SummaryScalarWhereWithAggregatesInput | Prisma.SummaryScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Summary"> | string
-  owner_id?: Prisma.UuidWithAggregatesFilter<"Summary"> | string
   workspace_id?: Prisma.UuidWithAggregatesFilter<"Summary"> | string
-  project_id?: Prisma.UuidWithAggregatesFilter<"Summary"> | string
   topic?: Prisma.StringWithAggregatesFilter<"Summary"> | string
   result?: Prisma.StringWithAggregatesFilter<"Summary"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Summary"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Summary"> | Date | string
+  project_id?: Prisma.UuidWithAggregatesFilter<"Summary"> | string
+  owner_id?: Prisma.UuidWithAggregatesFilter<"Summary"> | string
 }
 
 export type SummaryCreateInput = {
   id?: string
   workspace_id: string
-  project_id: string
   topic: string
   result: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  project_id: string
   owner: Prisma.UserCreateNestedOneWithoutSummaryInput
 }
 
 export type SummaryUncheckedCreateInput = {
   id?: string
-  owner_id: string
   workspace_id: string
-  project_id: string
   topic: string
   result: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  project_id: string
+  owner_id: string
 }
 
 export type SummaryUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
-  project_id?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   result?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
   owner?: Prisma.UserUpdateOneRequiredWithoutSummaryNestedInput
 }
 
 export type SummaryUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  owner_id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
-  project_id?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   result?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SummaryCreateManyInput = {
   id?: string
-  owner_id: string
   workspace_id: string
-  project_id: string
   topic: string
   result: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  project_id: string
+  owner_id: string
 }
 
 export type SummaryUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
-  project_id?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   result?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SummaryUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  owner_id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
-  project_id?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   result?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SummaryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  owner_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
-  project_id?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   result?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  project_id?: Prisma.SortOrder
+  owner_id?: Prisma.SortOrder
 }
 
 export type SummaryMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  owner_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
-  project_id?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   result?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  project_id?: Prisma.SortOrder
+  owner_id?: Prisma.SortOrder
 }
 
 export type SummaryMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  owner_id?: Prisma.SortOrder
   workspace_id?: Prisma.SortOrder
-  project_id?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   result?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  project_id?: Prisma.SortOrder
+  owner_id?: Prisma.SortOrder
 }
 
 export type SummaryListRelationFilter = {
@@ -428,21 +428,21 @@ export type SummaryUncheckedUpdateManyWithoutOwnerNestedInput = {
 export type SummaryCreateWithoutOwnerInput = {
   id?: string
   workspace_id: string
-  project_id: string
   topic: string
   result: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  project_id: string
 }
 
 export type SummaryUncheckedCreateWithoutOwnerInput = {
   id?: string
   workspace_id: string
-  project_id: string
   topic: string
   result: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  project_id: string
 }
 
 export type SummaryCreateOrConnectWithoutOwnerInput = {
@@ -476,105 +476,105 @@ export type SummaryScalarWhereInput = {
   OR?: Prisma.SummaryScalarWhereInput[]
   NOT?: Prisma.SummaryScalarWhereInput | Prisma.SummaryScalarWhereInput[]
   id?: Prisma.UuidFilter<"Summary"> | string
-  owner_id?: Prisma.UuidFilter<"Summary"> | string
   workspace_id?: Prisma.UuidFilter<"Summary"> | string
-  project_id?: Prisma.UuidFilter<"Summary"> | string
   topic?: Prisma.StringFilter<"Summary"> | string
   result?: Prisma.StringFilter<"Summary"> | string
   createdAt?: Prisma.DateTimeFilter<"Summary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Summary"> | Date | string
+  project_id?: Prisma.UuidFilter<"Summary"> | string
+  owner_id?: Prisma.UuidFilter<"Summary"> | string
 }
 
 export type SummaryCreateManyOwnerInput = {
   id?: string
   workspace_id: string
-  project_id: string
   topic: string
   result: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  project_id: string
 }
 
 export type SummaryUpdateWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
-  project_id?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   result?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SummaryUncheckedUpdateWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
-  project_id?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   result?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SummaryUncheckedUpdateManyWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspace_id?: Prisma.StringFieldUpdateOperationsInput | string
-  project_id?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   result?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type SummarySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  owner_id?: boolean
   workspace_id?: boolean
-  project_id?: boolean
   topic?: boolean
   result?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  project_id?: boolean
+  owner_id?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["summary"]>
 
 export type SummarySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  owner_id?: boolean
   workspace_id?: boolean
-  project_id?: boolean
   topic?: boolean
   result?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  project_id?: boolean
+  owner_id?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["summary"]>
 
 export type SummarySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  owner_id?: boolean
   workspace_id?: boolean
-  project_id?: boolean
   topic?: boolean
   result?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  project_id?: boolean
+  owner_id?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["summary"]>
 
 export type SummarySelectScalar = {
   id?: boolean
-  owner_id?: boolean
   workspace_id?: boolean
-  project_id?: boolean
   topic?: boolean
   result?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  project_id?: boolean
+  owner_id?: boolean
 }
 
-export type SummaryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "owner_id" | "workspace_id" | "project_id" | "topic" | "result" | "createdAt" | "updatedAt", ExtArgs["result"]["summary"]>
+export type SummaryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspace_id" | "topic" | "result" | "createdAt" | "updatedAt" | "project_id" | "owner_id", ExtArgs["result"]["summary"]>
 export type SummaryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -592,13 +592,13 @@ export type $SummaryPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    owner_id: string
     workspace_id: string
-    project_id: string
     topic: string
     result: string
     createdAt: Date
     updatedAt: Date
+    project_id: string
+    owner_id: string
   }, ExtArgs["result"]["summary"]>
   composites: {}
 }
@@ -1024,13 +1024,13 @@ export interface Prisma__SummaryClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface SummaryFieldRefs {
   readonly id: Prisma.FieldRef<"Summary", 'String'>
-  readonly owner_id: Prisma.FieldRef<"Summary", 'String'>
   readonly workspace_id: Prisma.FieldRef<"Summary", 'String'>
-  readonly project_id: Prisma.FieldRef<"Summary", 'String'>
   readonly topic: Prisma.FieldRef<"Summary", 'String'>
   readonly result: Prisma.FieldRef<"Summary", 'String'>
   readonly createdAt: Prisma.FieldRef<"Summary", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Summary", 'DateTime'>
+  readonly project_id: Prisma.FieldRef<"Summary", 'String'>
+  readonly owner_id: Prisma.FieldRef<"Summary", 'String'>
 }
     
 
