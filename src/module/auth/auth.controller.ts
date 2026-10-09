@@ -329,27 +329,23 @@ export const getMe = async (req: Request, res: Response) => {
   });
 };
 
-const logout = catchAsync(async (req, res, next) => {
-  try {
-    const isProduction = process.env.NODE_ENV === "production";
+const logout = catchAsync(async (req, res) => {
+  const isProduction = process.env.NODE_ENV === "production";
 
-    const cookieOptions = {
-      httpOnly: true,
-      secure: isProduction,
-      sameSite: isProduction ? ("none" as const) : ("lax" as const),
-      path: "/",
-    };
+  const cookieOptions = {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? ("none" as const) : ("lax" as const),
+    path: "/",
+  };
 
-    res.clearCookie("accessToken", cookieOptions);
-    res.clearCookie("refreshToken", cookieOptions);
+  res.clearCookie("accessToken", cookieOptions);
+  res.clearCookie("refreshToken", cookieOptions);
 
-    return res.status(200).json({
-      success: true,
-      message: "Logged out successfully",
-    });
-  } catch (error) {
-    next(error);
-  }
+  return res.status(200).json({
+    success: true,
+    message: "Logged out successfully",
+  });
 });
 
 export const authControllers = {
