@@ -7,6 +7,6 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: env("DATABASE_URL"),
+    url: env("DIRECT_URL"), // Prisma CLI migrations-এর জন্য direct url ব্যবহার করবে
   },
 });

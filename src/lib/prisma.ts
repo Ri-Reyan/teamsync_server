@@ -1,11 +1,37 @@
-import "dotenv/config";
-import pg from "pg";
+import { PrismaClient } from "../generated/prisma/client.js";
 import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "../generated/prisma/client.js"; // Relative path src এর ভেতরে আপডেট হলো
+import pg from "pg";
 
 const connectionString = process.env.DATABASE_URL;
 
-const pool = new pg.Pool({ connectionString });
+if (!connectionString) {
+  throw new Error("DATABASE_URL is missing");
+}
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+  pool: pg.Pool | undefined;
+};
+
+const pool = globalForPrisma.pool ?? new pg.Pool({ connectionString });
+
+pool.on("error", (error) => {
+  console.error("[PostgreSQL pool error]", error.message);
+});
+
 const adapter = new PrismaPg(pool);
 
-export const prisma = new PrismaClient({ adapter });
+export const prisma =
+  globalForPrisma.prisma ??
+  new PrismaClient({
+    adapter,
+    log:
+      process.env.NODE_ENV === "development"
+        ? ["query", "error", "warn"]
+        : ["error"],
+  });
+
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.prisma = prisma;
+  globalForPrisma.pool = pool;
+}

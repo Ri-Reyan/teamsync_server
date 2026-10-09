@@ -1,15 +1,14 @@
 model Workspace {
-  id           String   @id @default(uuid()) @db.Uuid
-  name         String  @unique @db.VarChar(255)
-  owner_id     String   @db.Uuid
-  project_count Int     @default(0)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  owner       User         @relation(fields: [owner_id], references: [id], onDelete: Cascade)
-  projects    Project[]
-  members     Member[]
-  invitations Invitation[]
+  id            String       @id @default(uuid()) @db.Uuid
+  name          String       @unique @db.VarChar(255)
+  owner_id      String       @db.Uuid
+  project_count Int          @default(0)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  invitations   Invitation[]
+  members       Member[]
+  projects      Project[]
+  owner         User         @relation(fields: [owner_id], references: [id], onDelete: Cascade)
 
   @@map("workspaces")
 }
