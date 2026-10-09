@@ -1,5 +1,14 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
+import { credentials } from "../config/credentials.js";
 import AppError from "../global/AppError.js";
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: credentials.email_user,
+    pass: credentials.email_pass,
+  },
+});
 
 type SendEmailPayloadType = {
   to: string;
@@ -8,31 +17,18 @@ type SendEmailPayloadType = {
   html?: string;
 };
 
-export const sendEmail = async (payload: SendEmailPayloadType) => {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM;
-
-  if (!apiKey || !from) {
-    throw new AppError("Email service is not configured", 500);
-  }
-
-  if (!payload.text && !payload.html) {
-    throw new AppError("Email must include text or HTML content", 400);
-  }
-
-  const resend = new Resend(apiKey);
-
-  const { data, error } = await resend.emails.send({
-    from,
-    to: payload.to,
-    subject: payload.subject,
-    text: payload.text ?? "",
-    html: payload.html ?? "",
-  });
-
-  if (error) {
-    throw new AppError(`Failed to send email: ${error.message}`, 502);
-  }
-
-  return data;
-};
+export const sendEmail = (payload: SendEmailPayloadType) =>
+  transporter.sendMail(
+    {
+      from: process.env.EMAIL_USER,
+      to: payload.to,
+      subject: payload.subject,
+      text: payload.text,
+      html: payload.html,
+    },
+    (error, info) => {
+      if (error) {
+        throw new AppError(error.message, 400);
+      }
+    },
+  );
