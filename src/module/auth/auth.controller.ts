@@ -83,7 +83,7 @@ const verifyRegistrationEmail = catchAsync(
       html,
     };
 
-    sendEmail(sendEmailPayload);
+    await sendEmail(sendEmailPayload);
 
     sendCookie(res, "accessToken", accessToken);
 
@@ -236,7 +236,7 @@ export const forgotPassword = catchAsync(
       resetUrl: resetUrl,
     });
 
-    const sent = await sendEmail({
+    await sendEmail({
       to: user.email,
       subject: "Password Reset Request",
       html,
